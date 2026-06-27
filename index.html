@@ -15,16 +15,16 @@
     header {
       background: #111827;
       padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-align: center;
     }
 
-    .cart-box {
+    .cart {
+      position: fixed;
+      top: 15px;
+      right: 15px;
       background: #1f2937;
       padding: 10px 15px;
       border-radius: 8px;
-      cursor: pointer;
     }
 
     .container {
@@ -32,7 +32,7 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       padding: 40px;
-      max-width: 1000px;
+      max-width: 900px;
       margin: auto;
     }
 
@@ -62,52 +62,29 @@
       background: #2563eb;
     }
 
-    /* Warenkorb Panel */
-    .cart-panel {
+    /* Warenkorb Box */
+    .cart-box {
       position: fixed;
-      right: -400px;
-      top: 0;
-      width: 350px;
-      height: 100%;
+      right: 15px;
+      top: 60px;
       background: #0b1220;
-      padding: 20px;
-      transition: 0.3s;
-      overflow-y: auto;
-      border-left: 1px solid #334155;
+      border: 1px solid #334155;
+      width: 250px;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
     }
 
-    .cart-panel.open {
-      right: 0;
+    .cart-box h3 {
+      margin-top: 0;
     }
 
-    .cart-item {
+    .item {
       background: #1e293b;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .remove {
-      background: red;
-      border: none;
-      color: white;
-      padding: 5px 8px;
+      padding: 5px;
+      margin: 5px 0;
       border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .checkout {
-      margin-top: 20px;
-      width: 100%;
-      background: #22c55e;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      color: black;
-      font-weight: bold;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -116,78 +93,68 @@
 
 <header>
   <h1>🛒 Mein Shop</h1>
-  <div class="cart-box" onclick="toggleCart()">
-    Warenkorb 🛍️ (<span id="count">0</span>)
-  </div>
 </header>
+
+<div class="cart">
+  🛍️ Warenkorb (<span id="count">0</span>)
+  <button onclick="toggleCart()">anzeigen</button>
+</div>
+
+<div class="cart-box" id="cartBox">
+  <h3>Dein Warenkorb</h3>
+  <div id="items"></div>
+</div>
 
 <div class="container">
 
   <div class="product">
     <h3>Produkt 1</h3>
     <p class="price">€19.99</p>
-    <button onclick="addItem('Produkt 1', 19.99)">Hinzufügen</button>
+    <button onclick="add('Produkt 1')">Hinzufügen</button>
   </div>
 
   <div class="product">
     <h3>Produkt 2</h3>
     <p class="price">€29.99</p>
-    <button onclick="addItem('Produkt 2', 29.99)">Hinzufügen</button>
+    <button onclick="add('Produkt 2')">Hinzufügen</button>
   </div>
 
   <div class="product">
     <h3>Produkt 3</h3>
     <p class="price">€39.99</p>
-    <button onclick="addItem('Produkt 3', 39.99)">Hinzufügen</button>
+    <button onclick="add('Produkt 3')">Hinzufügen</button>
   </div>
 
-</div>
-
-<!-- Warenkorb -->
-<div class="cart-panel" id="cart">
-  <h2>Dein Warenkorb</h2>
-  <div id="cart-items"></div>
-
-  <h3 id="total">Gesamt: €0.00</h3>
-
-  <button class="checkout" onclick="checkout()">Zur Kasse</button>
 </div>
 
 <script>
   let cart = [];
 
-  function addItem(name, price) {
-    cart.push({ name, price });
-    updateCart();
+  function add(name) {
+    cart.push(name);
+    update();
   }
 
-  function removeItem(index) {
-    cart.splice(index, 1);
-    updateCart();
-  }
+  function update() {
+    document.getElementById("count").innerText = cart.length;
 
-  function updateCart() {
-    let list = document.getElementById("cart-items");
-    let count = document.getElementById("count");
-    let total = document.getElementById("total");
+    let box = document.getElementById("items");
+    box.innerHTML = "";
 
-    list.innerHTML = "";
-
-    let sum = 0;
-
-    cart.forEach((item, i) => {
-      sum += item.price;
-
-      list.innerHTML += `
-        <div class="cart-item">
-          ${item.name} - €${item.price}
-          <button class="remove" onclick="removeItem(${i})">X</button>
-        </div>
-      `;
+    cart.forEach((item) => {
+      box.innerHTML += `<div class="item">${item}</div>`;
     });
-
-    count.innerText = cart.length;
-    total.innerText = "Gesamt: €" + sum.toFixed(2);
   }
 
- 
+  function toggleCart() {
+    let box = document.getElementById("cartBox");
+    if (box.style.display === "block") {
+      box.style.display = "none";
+    } else {
+      box.style.display = "block";
+    }
+  }
+</script>
+
+</body>
+</html>
