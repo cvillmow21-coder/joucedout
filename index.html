@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Mein Portfolio</title>
+  <title>Mein Shop</title>
 
   <style>
     body {
@@ -13,38 +13,45 @@
     }
 
     header {
-      padding: 80px 20px;
+      background: #111827;
+      padding: 30px;
       text-align: center;
-      background: linear-gradient(135deg, #1e293b, #0f172a);
     }
 
     header h1 {
-      font-size: 50px;
-      margin-bottom: 10px;
+      margin: 0;
+      font-size: 32px;
     }
 
-    header p {
-      color: #cbd5e1;
-      font-size: 18px;
-    }
-
-    .section {
-      padding: 60px 20px;
-      max-width: 900px;
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      max-width: 1000px;
       margin: auto;
     }
 
-    .card {
+    .product {
       background: #1e293b;
       padding: 20px;
       border-radius: 10px;
-      margin-top: 20px;
+      text-align: center;
+    }
+
+    .product h3 {
+      margin: 10px 0;
+    }
+
+    .price {
+      color: #22c55e;
+      font-weight: bold;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
+      margin-top: 10px;
+      padding: 10px 15px;
       background: #3b82f6;
       color: white;
       text-decoration: none;
@@ -57,7 +64,7 @@
 
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 20px;
       color: #94a3b8;
     }
   </style>
@@ -66,38 +73,34 @@
 <body>
 
 <header>
-  <h1>Hallo 👋 ich bin [DEIN NAME]</h1>
-  <p>Willkommen auf meiner Portfolio-Website</p>
+  <h1>🛒 Mein Online Shop</h1>
+  <p>Willkommen in meinem Store</p>
 </header>
 
-<div class="section">
-  <h2>Über mich</h2>
-  <div class="card">
-    <p>Ich baue gerade meine erste Website mit GitHub Pages 🚀</p>
-  </div>
-</div>
+<div class="container">
 
-<div class="section">
-  <h2>Meine Projekte</h2>
-
-  <div class="card">
-    <h3>Projekt 1</h3>
-    <p>Hier kommt dein erstes Projekt rein.</p>
+  <div class="product">
+    <h3>Produkt 1</h3>
+    <p class="price">€19.99</p>
+    <a class="btn" href="#">Kaufen</a>
   </div>
 
-  <div class="card">
-    <h3>Projekt 2</h3>
-    <p>Hier kannst du später mehr Projekte hinzufügen.</p>
+  <div class="product">
+    <h3>Produkt 2</h3>
+    <p class="price">€29.99</p>
+    <a class="btn" href="#">Kaufen</a>
   </div>
-</div>
 
-<div class="section" style="text-align:center;">
-  <h2>Kontakt</h2>
-  <a class="btn" href="https://github.com" target="_blank">Mein GitHub</a>
+  <div class="product">
+    <h3>Produkt 3</h3>
+    <p class="price">€39.99</p>
+    <a class="btn" href="#">Kaufen</a>
+  </div>
+
 </div>
 
 <footer>
-  © 2026 Meine Website
+  © 2026 Mein Shop
 </footer>
 
 </body>
