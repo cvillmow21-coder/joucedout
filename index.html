@@ -68,7 +68,7 @@
       top: 60px;
       background: #0b1220;
       border: 1px solid #334155;
-      width: 260px;
+      width: 280px;
       padding: 10px;
       border-radius: 8px;
       display: none;
@@ -76,10 +76,22 @@
 
     .item {
       background: #1e293b;
-      padding: 5px;
+      padding: 8px;
       margin: 5px 0;
       border-radius: 5px;
       font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .remove {
+      background: red;
+      border: none;
+      color: white;
+      padding: 3px 6px;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -125,7 +137,6 @@
 <script>
   let cart = [];
 
-  // Beim Laden: Daten aus Browser holen
   window.onload = function() {
     let saved = localStorage.getItem("cart");
     if (saved) {
@@ -144,14 +155,25 @@
     update();
   }
 
+  function remove(index) {
+    cart.splice(index, 1);
+    saveCart();
+    update();
+  }
+
   function update() {
     document.getElementById("count").innerText = cart.length;
 
     let box = document.getElementById("items");
     box.innerHTML = "";
 
-    cart.forEach((item) => {
-      box.innerHTML += `<div class="item">${item}</div>`;
+    cart.forEach((item, index) => {
+      box.innerHTML += `
+        <div class="item">
+          ${item}
+          <button class="remove" onclick="remove(${index})">X</button>
+        </div>
+      `;
     });
   }
 
