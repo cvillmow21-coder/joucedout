@@ -68,7 +68,7 @@
       top: 60px;
       background: #0b1220;
       border: 1px solid #334155;
-      width: 300px;
+      width: 320px;
       padding: 10px;
       border-radius: 8px;
       display: none;
@@ -135,4 +135,74 @@
   <div class="product">
     <h3>Produkt 3</h3>
     <p class="price">€39.99</p>
-    <button onclick="add('Produkt 3', 39
+    <button onclick="add('Produkt 3', 39.99)">Hinzufügen</button>
+  </div>
+
+</div>
+
+<script>
+  let cart = [];
+
+  // SAFE LOAD (verhindert Crash)
+  window.onload = function () {
+    try {
+      let saved = localStorage.getItem("cart");
+      if (saved) {
+        cart = JSON.parse(saved);
+        if (!Array.isArray(cart)) cart = [];
+      }
+    } catch (e) {
+      cart = [];
+      localStorage.removeItem("cart");
+    }
+    update();
+  };
+
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  function add(name, price) {
+    cart.push({ name, price });
+    saveCart();
+    update();
+  }
+
+  function remove(index) {
+    cart.splice(index, 1);
+    saveCart();
+    update();
+  }
+
+  function update() {
+    document.getElementById("count").innerText = cart.length;
+
+    let box = document.getElementById("items");
+    box.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      let price = item.price || 0;
+      total += price;
+
+      box.innerHTML += `
+        <div class="item">
+          ${item.name || "Unbekannt"} - €${price.toFixed(2)}
+          <button class="remove" onclick="remove(${index})">X</button>
+        </div>
+      `;
+    });
+
+    document.getElementById("total").innerText =
+      "Gesamt: €" + total.toFixed(2);
+  }
+
+  function toggleCart() {
+    let box = document.getElementById("cartBox");
+    box.style.display = (box.style.display === "block") ? "none" : "block";
+  }
+</script>
+
+</body>
+</html>
