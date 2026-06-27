@@ -5,19 +5,43 @@
 <title>JUICEDOUT Shop</title>
 
 <style>
-/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 🌈 FIX: Hintergrund erzwingen */
 html, body {
   height: 100%;
-  background: radial-gradient(circle at top, #1b0b2e, #0b0f1a) !important;
-  color: white;
+  background: radial-gradient(circle at top, #1b0b2e, #0b0f1a);
   font-family: Arial, sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 🍇 SYRUP INTRO */
+.syrup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(120deg, #ff4fd8, #a855f7, #ff4fd8);
+  background-size: 200% 200%;
+  animation: syrupFlow 1.8s ease-in-out forwards;
+}
+
+@keyframes syrupFlow {
+  0% {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 }
 
 /* 🌈 BACKGROUND LOGO */
@@ -52,14 +76,18 @@ html, body {
 }
 
 .navbar ul {
-  display: flex;
   list-style: none;
+  display: flex;
   gap: 20px;
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #ff4fd8;
 }
 
 /* HERO */
@@ -95,26 +123,25 @@ html, body {
   padding: 20px;
   border-radius: 15px;
   text-align: center;
+  transition: 0.3s;
 }
 
-/* CART */
-.cart {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  background: rgba(0,0,0,0.4);
-  padding: 10px;
-  border-radius: 10px;
-  z-index: 10;
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255,79,216,0.3);
 }
 </style>
-
 </head>
 
 <body>
 
+<!-- 🍇 SYRUP OVERLAY -->
+<div class="syrup-overlay"></div>
+
+<!-- 🌈 BACKGROUND LOGO -->
 <div class="bg-logo"></div>
 
+<!-- NAV -->
 <nav class="navbar">
   <img src="5270.png">
   <ul>
@@ -124,10 +151,12 @@ html, body {
   </ul>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <h1>sip a line and feel relaxed</h1>
 </div>
 
+<!-- PRODUCTS -->
 <div class="container">
 
   <div class="product">
@@ -146,6 +175,15 @@ html, body {
   </div>
 
 </div>
+
+<script>
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const overlay = document.querySelector(".syrup-overlay");
+    if (overlay) overlay.remove();
+  }, 1800);
+});
+</script>
 
 </body>
 </html>
