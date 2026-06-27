@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    header {
+      background: #111827;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .box {
+      max-width: 600px;
+      margin: auto;
+      padding: 40px;
+    }
+
+    .item {
+      background: #1e293b;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+
+    .total {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #22c55e;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #22c55e;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #16a34a;
+    }
+
+    a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🧾 Checkout</h1>
+</header>
+
+<div class="box">
+
+  <h2>Deine Bestellung</h2>
+  <div id="items"></div>
+
+  <div class="total" id="total"></div>
+
+  <h2>Deine Daten</h2>
+
+  <input type="text" placeholder="Name">
+  <input type="text" placeholder="Adresse">
+  <input type="email" placeholder="E-Mail">
+
+  <button onclick="buy()">Jetzt kaufen</button>
+
+  <p style="margin-top:20px;">
+    <a href="index.html">← zurück zum Shop</a>
+  </p>
+
+</div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let total = 0;
+  let box = document.getElementById("items");
+
+  cart.forEach(item => {
+    let price = item.price || 0;
+    total += price;
+
+    box.innerHTML += `
+      <div class="item">
+        ${item.name} - €${price.toFixed(2)}
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText =
+    "Gesamt: €" + total.toFixed(2);
+
+  function buy() {
+    alert("Bestellung erfolgreich (Demo) 🎉");
+    localStorage.removeItem("cart");
+  }
+</script>
+
+</body>
+</html>
