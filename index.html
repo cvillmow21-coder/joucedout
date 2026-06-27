@@ -1,132 +1,151 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>JUICEDOUT Shop</title>
+<meta charset="UTF-8">
+<title>JUICEDOUT Shop</title>
 
-  <link rel="stylesheet" href="style.css">
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #1b0b2e, #0b0f1a);
-      color: white;
-      overflow-x: hidden;
-    }
+/* 🌈 FIX: Hintergrund erzwingen */
+html, body {
+  height: 100%;
+  background: radial-gradient(circle at top, #1b0b2e, #0b0f1a) !important;
+  color: white;
+  font-family: Arial, sans-serif;
+}
 
-    /* 🌈 BACKGROUND LOGO (zurück auf normal) */
-    .bg-logo {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: url("5270.png") no-repeat center;
-      background-size: contain;
-      width: 80%;
-      height: 80%;
-      opacity: 0.06;
-      z-index: 0;
-      pointer-events: none;
-      filter: drop-shadow(0 0 40px #ff4fd8);
-    }
+/* 🌈 BACKGROUND LOGO */
+.bg-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: url("5270.png") no-repeat center;
+  background-size: contain;
+  opacity: 0.06;
+  z-index: 0;
+  pointer-events: none;
+}
 
-    /* 🌸 SLOGAN */
-    .hero {
-      text-align: center;
-      margin-top: 60px;
-      position: relative;
-      z-index: 2;
-    }
+/* NAV */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+}
 
-    .hero h1 {
-      font-size: 3.2rem;
-      background: linear-gradient(90deg, #ff4fd8, #a855f7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+.navbar img {
+  height: 80px;
+}
 
-    /* 🧃 NAVBAR */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background: rgba(20, 10, 40, 0.6);
-      backdrop-filter: blur(10px);
-      position: relative;
-      z-index: 2;
-    }
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
 
-    /* 🔥 LOGO OBEN LINKS (JETZT GRÖSSER) */
-    .navbar img {
-      height: 80px;   /* <- deutlich größer */
-    }
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
 
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
+/* HERO */
+.hero {
+  text-align: center;
+  margin-top: 50px;
+  position: relative;
+  z-index: 2;
+}
 
-    .navbar a {
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+.hero h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #ff4fd8, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    .navbar a:hover {
-      color: #ff4fd8;
-    }
+/* PRODUCTS */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  padding: 60px 30px;
+  max-width: 1100px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
 
-    /* 🧃 PRODUKTE */
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 25px;
-      padding: 60px 30px;
-      max-width: 1100px;
-      margin: auto;
-      position: relative;
-      z-index: 2;
-    }
+.product {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,79,216,0.3);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
 
-    .product {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 79, 216, 0.3);
-      backdrop-filter: blur(10px);
-      padding: 25px;
-      border-radius: 18px;
-      text-align: center;
-      transition: 0.3s;
-    }
+/* CART */
+.cart {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.4);
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 10;
+}
+</style>
 
-    .product:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 40px rgba(255, 79, 216, 0.3);
-    }
+</head>
 
-    .price {
-      color: #ff4fd8;
-      font-weight: bold;
-    }
+<body>
 
-    button {
-      margin-top: 10px;
-      padding: 10px 14px;
-      background: linear-gradient(90deg, #ff4fd8, #a855f7);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+<div class="bg-logo"></div>
 
-    button:hover {
-      transform: scale(1.05);
-    }
+<nav class="navbar">
+  <img src="5270.png">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Shop</a></li>
+    <li><a href="checkout.html">Checkout</a></li>
+  </ul>
+</nav>
 
-    /* 🛍 CART */
-    .cart {
-      position: fixed;
-      top: 15px
+<div class="hero">
+  <h1>sip a line and feel relaxed</h1>
+</div>
+
+<div class="container">
+
+  <div class="product">
+    <h3>Produkt 1</h3>
+    <p>€19.99</p>
+  </div>
+
+  <div class="product">
+    <h3>Produkt 2</h3>
+    <p>€29.99</p>
+  </div>
+
+  <div class="product">
+    <h3>Produkt 3</h3>
+    <p>€39.99</p>
+  </div>
+
+</div>
+
+</body>
+</html>
