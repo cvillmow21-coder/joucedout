@@ -256,5 +256,68 @@
   }
 </script>
 
-</body>
+</body><div class="bg-logo"></div>
+
+<div class="hero">
+  <h1>sip a line and feel relaxed</h1>
+</div>
 </html>
+body {
+  margin: 0;
+  background: #0f172a;
+  font-family: Arial, sans-serif;
+}
+
+/* LOGO IM HINTERGRUND */
+.bg-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url("5270.png") no-repeat center;
+  background-size: contain;
+  width: 70%;
+  height: 70%;
+  opacity: 0.06;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* SLOGAN */
+.hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: white;
+  letter-spacing: 1px;
+}
+
+/* PRODUKTE IM VORDERGRUND */
+.container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  padding: 60px 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.product {
+  background: rgba(30, 41, 59, 0.9);
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+  transition: 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+}
