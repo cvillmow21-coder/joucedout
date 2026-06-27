@@ -15,7 +15,7 @@
       overflow-x: hidden;
     }
 
-    /* 🌈 GROßES LOGO (3x größer) */
+    /* 🌈 BACKGROUND LOGO (zurück auf normal) */
     .bg-logo {
       position: fixed;
       top: 50%;
@@ -23,9 +23,9 @@
       transform: translate(-50%, -50%);
       background: url("5270.png") no-repeat center;
       background-size: contain;
-      width: 220%;
-      height: 220%;
-      opacity: 0.08;
+      width: 80%;
+      height: 80%;
+      opacity: 0.06;
       z-index: 0;
       pointer-events: none;
       filter: drop-shadow(0 0 40px #ff4fd8);
@@ -44,10 +44,9 @@
       background: linear-gradient(90deg, #ff4fd8, #a855f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 1px;
     }
 
-    /* 🛒 NAVBAR */
+    /* 🧃 NAVBAR */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -59,8 +58,9 @@
       z-index: 2;
     }
 
+    /* 🔥 LOGO OBEN LINKS (JETZT GRÖSSER) */
     .navbar img {
-      height: 40px;
+      height: 80px;   /* <- deutlich größer */
     }
 
     .navbar ul {
@@ -129,141 +129,4 @@
     /* 🛍 CART */
     .cart {
       position: fixed;
-      top: 15px;
-      right: 15px;
-      background: rgba(0,0,0,0.4);
-      padding: 10px 15px;
-      border-radius: 10px;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-    }
-
-    .cart-box {
-      position: fixed;
-      right: 15px;
-      top: 70px;
-      background: rgba(10,10,20,0.95);
-      width: 320px;
-      padding: 10px;
-      border-radius: 10px;
-      display: none;
-      z-index: 10;
-    }
-
-    .item {
-      display: flex;
-      justify-content: space-between;
-      padding: 6px;
-      margin: 5px 0;
-      background: rgba(255,255,255,0.05);
-      border-radius: 6px;
-    }
-
-    .remove {
-      background: #ff3b6b;
-      border: none;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .total {
-      margin-top: 10px;
-      color: #ff4fd8;
-      font-weight: bold;
-    }
-  </style>
-</head>
-
-<body>
-
-<!-- 🌈 BACKGROUND LOGO -->
-<div class="bg-logo"></div>
-
-<!-- NAV -->
-<nav class="navbar">
-  <img src="5270.png" alt="logo">
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Shop</a></li>
-    <li><a href="checkout.html">Checkout</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <h1>sip a line and feel relaxed</h1>
-</div>
-
-<!-- CART -->
-<div class="cart">
-  🛍️ (<span id="count">0</span>)
-  <button onclick="toggleCart()">Warenkorb</button>
-</div>
-
-<div class="cart-box" id="cartBox">
-  <div id="items"></div>
-  <div class="total" id="total"></div>
-</div>
-
-<!-- PRODUCTS -->
-<div class="container">
-
-  <div class="product">
-    <h3>Produkt 1</h3>
-    <p class="price">€19.99</p>
-    <button onclick="add('Produkt 1', 19.99)">Hinzufügen</button>
-  </div>
-
-  <div class="product">
-    <h3>Produkt 2</h3>
-    <p class="price">€29.99</p>
-    <button onclick="add('Produkt 2', 29.99)">Hinzufügen</button>
-  </div>
-
-  <div class="product">
-    <h3>Produkt 3</h3>
-    <p class="price">€39.99</p>
-    <button onclick="add('Produkt 3', 39.99)">Hinzufügen</button>
-  </div>
-
-</div>
-
-<script>
-  let cart = [];
-
-  function add(name, price) {
-    cart.push({ name, price });
-    update();
-  }
-
-  function update() {
-    document.getElementById("count").innerText = cart.length;
-
-    let box = document.getElementById("items");
-    box.innerHTML = "";
-
-    let total = 0;
-
-    cart.forEach((item, i) => {
-      total += item.price;
-      box.innerHTML += `
-        <div class="item">
-          ${item.name} €${item.price.toFixed(2)}
-          <button class="remove" onclick="cart.splice(${i},1); update()">X</button>
-        </div>
-      `;
-    });
-
-    document.getElementById("total").innerText =
-      "Gesamt: €" + total.toFixed(2);
-  }
-
-  function toggleCart() {
-    let box = document.getElementById("cartBox");
-    box.style.display = box.style.display === "block" ? "none" : "block";
-  }
-</script>
-
-</body>
-</html>
+      top: 15px
