@@ -2,14 +2,11 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Mein Shop</title>
+  <title>JUICEDOUT Shop</title>
 
   <link rel="stylesheet" href="style.css">
 
   <style>
-    
-    }
-
     .cart {
       position: fixed;
       top: 15px;
@@ -17,6 +14,7 @@
       background: #1f2937;
       padding: 10px 15px;
       border-radius: 8px;
+      color: white;
     }
 
     .container {
@@ -33,6 +31,7 @@
       padding: 20px;
       border-radius: 10px;
       text-align: center;
+      color: white;
     }
 
     .price {
@@ -64,6 +63,7 @@
       padding: 10px;
       border-radius: 8px;
       display: none;
+      color: white;
     }
 
     .item {
@@ -90,20 +90,62 @@
       font-weight: bold;
       color: #22c55e;
     }
+
+    /* NAVBAR + LOGO */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: #0f172a;
+      color: white;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #22c55e;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      color: white;
+    }
+
+    body {
+      margin: 0;
+      background: #0b1220;
+      font-family: Arial, sans-serif;
+    }
   </style>
 </head>
 
 <body>
-<nav class="navbar">
-    <div class="logo">JUICEDOUT</div>
 
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#">Shop</a></li>
-        <li><a href="#">Kontakt</a></li>
-        <li><a href="checkout.html">Checkout</a></li>
-    </ul>
+<nav class="navbar">
+  <div class="logo">JUICEDOUT</div>
+
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#">Shop</a></li>
+    <li><a href="#">Kontakt</a></li>
+    <li><a href="checkout.html">Checkout</a></li>
+  </ul>
 </nav>
+
 <header>
   <h1>🛒 Mein Shop</h1>
 </header>
@@ -112,11 +154,10 @@
   🛍️ Warenkorb (<span id="count">0</span>)
   <button onclick="toggleCart()">anzeigen</button>
 </div>
+
 <div class="cart-box" id="cartBox">
   <h3>Dein Warenkorb</h3>
-
   <div id="items"></div>
-
   <div class="total" id="total">Gesamt: €0.00</div>
 
   <button onclick="window.location.href='checkout.html'">
@@ -149,7 +190,6 @@
 <script>
   let cart = [];
 
-  // SAFE LOAD (verhindert Crash)
   window.onload = function () {
     try {
       let saved = localStorage.getItem("cart");
@@ -194,7 +234,7 @@
 
       box.innerHTML += `
         <div class="item">
-          ${item.name || "Unbekannt"} - €${price.toFixed(2)}
+          ${item.name} - €${price.toFixed(2)}
           <button class="remove" onclick="remove(${index})">X</button>
         </div>
       `;
