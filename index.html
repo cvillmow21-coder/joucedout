@@ -62,21 +62,16 @@
       background: #2563eb;
     }
 
-    /* Warenkorb Box */
     .cart-box {
       position: fixed;
       right: 15px;
       top: 60px;
       background: #0b1220;
       border: 1px solid #334155;
-      width: 250px;
+      width: 260px;
       padding: 10px;
       border-radius: 8px;
       display: none;
-    }
-
-    .cart-box h3 {
-      margin-top: 0;
     }
 
     .item {
@@ -130,8 +125,22 @@
 <script>
   let cart = [];
 
+  // Beim Laden: Daten aus Browser holen
+  window.onload = function() {
+    let saved = localStorage.getItem("cart");
+    if (saved) {
+      cart = JSON.parse(saved);
+    }
+    update();
+  }
+
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
   function add(name) {
     cart.push(name);
+    saveCart();
     update();
   }
 
@@ -148,11 +157,7 @@
 
   function toggleCart() {
     let box = document.getElementById("cartBox");
-    if (box.style.display === "block") {
-      box.style.display = "none";
-    } else {
-      box.style.display = "block";
-    }
+    box.style.display = (box.style.display === "block") ? "none" : "block";
   }
 </script>
 
