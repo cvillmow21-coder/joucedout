@@ -68,7 +68,7 @@
       top: 60px;
       background: #0b1220;
       border: 1px solid #334155;
-      width: 280px;
+      width: 300px;
       padding: 10px;
       border-radius: 8px;
       display: none;
@@ -79,10 +79,9 @@
       padding: 8px;
       margin: 5px 0;
       border-radius: 5px;
-      font-size: 14px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      font-size: 14px;
     }
 
     .remove {
@@ -92,6 +91,12 @@
       padding: 3px 6px;
       border-radius: 5px;
       cursor: pointer;
+    }
+
+    .total {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #22c55e;
     }
   </style>
 </head>
@@ -110,6 +115,7 @@
 <div class="cart-box" id="cartBox">
   <h3>Dein Warenkorb</h3>
   <div id="items"></div>
+  <div class="total" id="total">Gesamt: €0.00</div>
 </div>
 
 <div class="container">
@@ -117,71 +123,16 @@
   <div class="product">
     <h3>Produkt 1</h3>
     <p class="price">€19.99</p>
-    <button onclick="add('Produkt 1')">Hinzufügen</button>
+    <button onclick="add('Produkt 1', 19.99)">Hinzufügen</button>
   </div>
 
   <div class="product">
     <h3>Produkt 2</h3>
     <p class="price">€29.99</p>
-    <button onclick="add('Produkt 2')">Hinzufügen</button>
+    <button onclick="add('Produkt 2', 29.99)">Hinzufügen</button>
   </div>
 
   <div class="product">
     <h3>Produkt 3</h3>
     <p class="price">€39.99</p>
-    <button onclick="add('Produkt 3')">Hinzufügen</button>
-  </div>
-
-</div>
-
-<script>
-  let cart = [];
-
-  window.onload = function() {
-    let saved = localStorage.getItem("cart");
-    if (saved) {
-      cart = JSON.parse(saved);
-    }
-    update();
-  }
-
-  function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-
-  function add(name) {
-    cart.push(name);
-    saveCart();
-    update();
-  }
-
-  function remove(index) {
-    cart.splice(index, 1);
-    saveCart();
-    update();
-  }
-
-  function update() {
-    document.getElementById("count").innerText = cart.length;
-
-    let box = document.getElementById("items");
-    box.innerHTML = "";
-
-    cart.forEach((item, index) => {
-      box.innerHTML += `
-        <div class="item">
-          ${item}
-          <button class="remove" onclick="remove(${index})">X</button>
-        </div>
-      `;
-    });
-  }
-
-  function toggleCart() {
-    let box = document.getElementById("cartBox");
-    box.style.display = (box.style.display === "block") ? "none" : "block";
-  }
-</script>
-
-</body>
-</html>
+    <button onclick="add('Produkt 3', 39
