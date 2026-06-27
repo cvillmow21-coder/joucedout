@@ -2,56 +2,103 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Meine Website</title>
+  <title>Mein Portfolio</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
+      background: #0f172a;
       color: white;
+    }
+
+    header {
+      padding: 80px 20px;
       text-align: center;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
     }
 
-    .container {
-      padding: 100px 20px;
-    }
-
-    h1 {
+    header h1 {
       font-size: 50px;
       margin-bottom: 10px;
     }
 
-    p {
-      font-size: 20px;
+    header p {
       color: #cbd5e1;
+      font-size: 18px;
     }
 
-    .button {
+    .section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .btn {
       display: inline-block;
-      margin-top: 30px;
-      padding: 12px 25px;
+      margin-top: 20px;
+      padding: 10px 20px;
       background: #3b82f6;
       color: white;
       text-decoration: none;
       border-radius: 8px;
-      transition: 0.3s;
     }
 
-    .button:hover {
+    .btn:hover {
       background: #2563eb;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #94a3b8;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Hallo 👋</h1>
-    <p>Willkommen auf meiner ersten Website</p>
 
-    <a class="button" href="https://github.com" target="_blank">
-      Mein GitHub
-    </a>
+<header>
+  <h1>Hallo 👋 ich bin [DEIN NAME]</h1>
+  <p>Willkommen auf meiner Portfolio-Website</p>
+</header>
+
+<div class="section">
+  <h2>Über mich</h2>
+  <div class="card">
+    <p>Ich baue gerade meine erste Website mit GitHub Pages 🚀</p>
   </div>
+</div>
+
+<div class="section">
+  <h2>Meine Projekte</h2>
+
+  <div class="card">
+    <h3>Projekt 1</h3>
+    <p>Hier kommt dein erstes Projekt rein.</p>
+  </div>
+
+  <div class="card">
+    <h3>Projekt 2</h3>
+    <p>Hier kannst du später mehr Projekte hinzufügen.</p>
+  </div>
+</div>
+
+<div class="section" style="text-align:center;">
+  <h2>Kontakt</h2>
+  <a class="btn" href="https://github.com" target="_blank">Mein GitHub</a>
+</div>
+
+<footer>
+  © 2026 Meine Website
+</footer>
+
 </body>
 </html>
