@@ -1,21 +1,20 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<title>JUICEDOUT Shop</title>
-
-<style>html, body {
-  height: 100%;
-  font-family: Arial, sans-serif;
-
-  /* 🔥 FIX: garantiert sichtbar */
-  background: #120018 !important;
-  background-image: radial-gradient(circle at top, #1b0b2e, #0b0f1a) !important;
-
-  color: white;
-  overflow-x: hidden;
+<style>
+/* 🔥 HARD RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* 🚨 FORCE BACKGROUND (ÜBERSCHREIBT ALLES) */
+html, body {
+  height: 100% !important;
+  width: 100% !important;
+  background: radial-gradient(circle at top, #1b0b2e, #0b0f1a) !important;
+  background-color: #1b0b2e !important;
+  color: white !important;
+  font-family: Arial, sans-serif !important;
+  overflow-x: hidden !important;
 }
 
 /* 🌈 BACKGROUND LOGO */
@@ -24,11 +23,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
+  width: 80vw;
+  height: 80vh;
   background: url("5270.png") no-repeat center;
   background-size: contain;
-  opacity: 0.06;
+  opacity: 0.07;
   z-index: 0;
   pointer-events: none;
 }
@@ -39,29 +38,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.4);
   backdrop-filter: blur(10px);
   position: relative;
-  z-index: 2;
+  z-index: 10;
 }
 
 .navbar img {
   height: 80px;
-}
-
-.navbar ul {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-}
-
-.navbar a:hover {
-  color: #ff4fd8;
 }
 
 /* HERO */
@@ -81,21 +65,19 @@
 
 /* CATEGORY */
 .category {
-  margin-top: 50px;
   position: relative;
   z-index: 2;
+  margin-top: 50px;
 }
 
 .category h2 {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 20px;
-  background: linear-gradient(90deg, #ff4fd8, #a855f7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ff4fd8;
 }
 
-/* PRODUCTS GRID */
+/* PRODUCTS */
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -107,7 +89,6 @@
   z-index: 2;
 }
 
-/* PRODUCT CARD */
 .product {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,79,216,0.3);
@@ -119,3 +100,17 @@
 
 .product:hover {
   transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(255,79,216,0.25);
+}
+
+/* BUTTON */
+button {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, #ff4fd8, #a855f7);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+</style>
