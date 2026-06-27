@@ -13,33 +13,76 @@
 
 html, body {
   height: 100%;
-  background: radial-gradient(circle at top, #1b0b2e, #0b0f1a);
   font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #120018, #05060a);
   color: white;
   overflow-x: hidden;
 }
 
-/* 🍇 SYRUP INTRO */
+/* 🧪 DRIPPY GRAFFITI INTRO */
 .syrup-overlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: linear-gradient(120deg, #ff4fd8, #a855f7, #ff4fd8);
-  background-size: 200% 200%;
-  animation: syrupFlow 1.8s ease-in-out forwards;
+  overflow: hidden;
+  background: linear-gradient(120deg, #ff00cc, #7a00ff, #ff4fd8);
 }
 
-@keyframes syrupFlow {
+/* große zähe “paint blobs” */
+.syrup-overlay::before,
+.syrup-overlay::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 20%, #ff00cc, transparent 40%),
+              radial-gradient(circle at 70% 40%, #7a00ff, transparent 45%),
+              radial-gradient(circle at 50% 80%, #ff4fd8, transparent 50%);
+  filter: blur(30px);
+  animation: blobMove 2s ease-in-out forwards;
+}
+
+/* drip lines */
+.syrup-overlay::after {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 0, 204, 0.9) 0px,
+      rgba(255, 0, 204, 0.9) 20px,
+      transparent 20px,
+      transparent 60px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.8;
+  animation: dripFall 2s ease-in-out forwards;
+}
+
+/* blob movement */
+@keyframes blobMove {
+  0% {
+    transform: translateY(-30%) scale(1.2);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(0%) scale(1.1);
+  }
+  100% {
+    transform: translateY(120%) scale(0.9);
+    opacity: 0;
+  }
+}
+
+/* dripping motion */
+@keyframes dripFall {
   0% {
     transform: translateY(-100%);
     opacity: 1;
   }
-  40% {
+  60% {
     transform: translateY(0%);
-    opacity: 1;
   }
   100% {
-    transform: translateY(100%);
+    transform: translateY(120%);
     opacity: 0;
   }
 }
@@ -76,8 +119,8 @@ html, body {
 }
 
 .navbar ul {
-  list-style: none;
   display: flex;
+  list-style: none;
   gap: 20px;
 }
 
@@ -100,7 +143,7 @@ html, body {
 
 .hero h1 {
   font-size: 3rem;
-  background: linear-gradient(90deg, #ff4fd8, #a855f7);
+  background: linear-gradient(90deg, #ff00cc, #7a00ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -118,8 +161,8 @@ html, body {
 }
 
 .product {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,79,216,0.3);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,0,204,0.3);
   padding: 20px;
   border-radius: 15px;
   text-align: center;
@@ -127,18 +170,18 @@ html, body {
 }
 
 .product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(255,79,216,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(255,0,204,0.3);
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🍇 SYRUP OVERLAY -->
+<!-- 🧪 DRIP INTRO -->
 <div class="syrup-overlay"></div>
 
-<!-- 🌈 BACKGROUND LOGO -->
+<!-- BACKGROUND LOGO -->
 <div class="bg-logo"></div>
 
 <!-- NAV -->
@@ -181,7 +224,7 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     const overlay = document.querySelector(".syrup-overlay");
     if (overlay) overlay.remove();
-  }, 1800);
+  }, 2000);
 });
 </script>
 
