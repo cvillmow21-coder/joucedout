@@ -80,18 +80,35 @@ html, body {
   -webkit-text-fill-color: transparent;
 }
 
-/* PRODUCTS */
+/* CATEGORY */
+.category {
+  margin-top: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.category h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #ff4fd8, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* PRODUCTS GRID */
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 25px;
-  padding: 60px 30px;
-  max-width: 1100px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px 30px;
+  max-width: 1000px;
   margin: auto;
   position: relative;
   z-index: 2;
 }
 
+/* PRODUCT CARD */
 .product {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,79,216,0.3);
@@ -102,51 +119,4 @@ html, body {
 }
 
 .product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(255,79,216,0.3);
-}
-</style>
-</head>
-
-<body>
-
-<!-- BACKGROUND LOGO -->
-<div class="bg-logo"></div>
-
-<!-- NAV -->
-<nav class="navbar">
-  <img src="5270.png">
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Shop</a></li>
-    <li><a href="checkout.html">Checkout</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <h1>sip a line and feel relaxed</h1>
-</div>
-
-<!-- PRODUCTS -->
-<div class="container">
-
-  <div class="product">
-    <h3>Produkt 1</h3>
-    <p>€19.99</p>
-  </div>
-
-  <div class="product">
-    <h3>Produkt 2</h3>
-    <p>€29.99</p>
-  </div>
-
-  <div class="product">
-    <h3>Produkt 3</h3>
-    <p>€39.99</p>
-  </div>
-
-</div>
-
-</body>
-</html>
+  transform: translateY(-6px);
