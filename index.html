@@ -14,13 +14,18 @@
 
     header {
       background: #111827;
-      padding: 30px;
+      padding: 20px;
       text-align: center;
+      position: relative;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 32px;
+    .cart {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: #1f2937;
+      padding: 10px 15px;
+      border-radius: 8px;
     }
 
     .container {
@@ -39,10 +44,6 @@
       text-align: center;
     }
 
-    .product h3 {
-      margin: 10px 0;
-    }
-
     .price {
       color: #22c55e;
       font-weight: bold;
@@ -56,6 +57,7 @@
       color: white;
       text-decoration: none;
       border-radius: 8px;
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -73,8 +75,10 @@
 <body>
 
 <header>
-  <h1>🛒 Mein Online Shop</h1>
-  <p>Willkommen in meinem Store</p>
+  <h1>🛒 Mein Shop</h1>
+  <div class="cart">
+    🛍️ Warenkorb: <span id="cart-count">0</span>
+  </div>
 </header>
 
 <div class="container">
@@ -82,19 +86,19 @@
   <div class="product">
     <h3>Produkt 1</h3>
     <p class="price">€19.99</p>
-    <a class="btn" href="#">Kaufen</a>
+    <button class="btn" onclick="addToCart()">In den Warenkorb</button>
   </div>
 
   <div class="product">
     <h3>Produkt 2</h3>
     <p class="price">€29.99</p>
-    <a class="btn" href="#">Kaufen</a>
+    <button class="btn" onclick="addToCart()">In den Warenkorb</button>
   </div>
 
   <div class="product">
     <h3>Produkt 3</h3>
     <p class="price">€39.99</p>
-    <a class="btn" href="#">Kaufen</a>
+    <button class="btn" onclick="addToCart()">In den Warenkorb</button>
   </div>
 
 </div>
@@ -102,6 +106,15 @@
 <footer>
   © 2026 Mein Shop
 </footer>
+
+<script>
+  let cart = 0;
+
+  function addToCart() {
+    cart++;
+    document.getElementById("cart-count").innerText = cart;
+  }
+</script>
 
 </body>
 </html>
