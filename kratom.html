@@ -12,6 +12,8 @@
 </head>
 
 <body>
+
+<!-- CART -->
 <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
 </div>
@@ -27,8 +29,11 @@
     <button onclick="clearCart()">Leeren</button>
 
 </div>
+
+<!-- BACKGROUND -->
 <div class="bg-logo"></div>
 
+<!-- HEADER -->
 <header>
 
 <a href="index.html">
@@ -41,51 +46,40 @@
 
 </header>
 
-<section class="products active">
-
-<div class="product-card">
-
-<button onclick="addToCart('Kratom Green', 17.99)">
-    In den Warenkorb
-</button>
-
-</div>
-
-<div class="product-card">
-
-<button onclick="addToCart('Kratom Gold', 27.99)">
-    In den Warenkorb
-</button>
-
-</div>
+<!-- PRODUCTS -->
+<main>
 
 <section class="products active">
 
-<div class="product-card">
+    <div class="product-card">
 
-    <h3>Kratom Green</h3>
-    <p>10ml</p>
-    <span>17.99 €</span>
+        <h3>Kratom Green</h3>
+        <p>10ml</p>
+        <span>17.99 €</span>
 
-    <button onclick="addToCart('Kratom Green', 17.99)">
-        In den Warenkorb
-    </button>
+        <button onclick="addToCart('Kratom Green', 17.99)">
+            In den Warenkorb
+        </button>
 
-</div>
+    </div>
 
-<div class="product-card">
+    <div class="product-card">
 
-    <h3>Kratom Gold</h3>
-    <p>20ml</p>
-    <span>27.99 €</span>
+        <h3>Kratom Gold</h3>
+        <p>20ml</p>
+        <span>27.99 €</span>
 
-    <button onclick="addToCart('Kratom Gold', 27.99)">
-        In den Warenkorb
-    </button>
+        <button onclick="addToCart('Kratom Gold', 27.99)">
+            In den Warenkorb
+        </button>
 
-</div>
+    </div>
 
 </section>
+
+</main>
+
+<script src="script.js"></script>
 
 </body>
 </html>
