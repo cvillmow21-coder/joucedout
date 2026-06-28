@@ -1,11 +1,18 @@
 function toggle(id){
 
-    let sections = document.querySelectorAll(".shop-section");
+    const sections = document.querySelectorAll(".shop-section");
 
     sections.forEach(sec => {
 
         if(sec.id === id){
-            sec.classList.toggle("active");
+
+            // wenn schon offen → schließen
+            if(sec.classList.contains("active")){
+                sec.classList.remove("active");
+            } else {
+                sec.classList.add("active");
+            }
+
         } else {
             sec.classList.remove("active");
         }
