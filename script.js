@@ -1,22 +1,19 @@
-function toggle(id){
+document.addEventListener("DOMContentLoaded", () => {
 
-    const sections = document.querySelectorAll(".shop-section");
+    window.toggle = function(id){
 
-    sections.forEach(sec => {
+        const sections = document.querySelectorAll(".shop-section");
 
-        if(sec.id === id){
+        sections.forEach(sec => {
 
-            // wenn schon offen → schließen
-            if(sec.classList.contains("active")){
-                sec.classList.remove("active");
+            if(sec.id === id){
+                sec.classList.toggle("active");
             } else {
-                sec.classList.add("active");
+                sec.classList.remove("active");
             }
 
-        } else {
-            sec.classList.remove("active");
-        }
+        });
 
-    });
+    };
 
-}
+});
