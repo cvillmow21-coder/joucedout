@@ -1,11 +1,74 @@
-function toggleCategory(category){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const sections = document.querySelectorAll(".products");
+/* SAVE */
+function save(){
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-    sections.forEach(section=>{
-        section.classList.remove("active");
-    });
+/* ADD */
+function addToCart(name, price){
 
-    document.getElementById(category).classList.add("active");
+    cart.push({name, price});
+    save();
+    updateCart();
 
 }
+
+/* REMOVE */
+function removeItem(index){
+
+    cart.splice(index,1);
+    save();
+    updateCart();
+
+}
+
+/* CLEAR */
+function clearCart(){
+
+    cart = [];
+    save();
+    updateCart();
+
+}
+
+/* TOGGLE CART */
+function toggleCart(){
+
+    document.getElementById("cart").classList.toggle("hidden");
+
+}
+
+/* UPDATE UI */
+function updateCart(){
+
+    let count = document.getElementById("cart-count");
+    let items = document.getElementById("cart-items");
+    let totalEl = document.getElementById("cart-total");
+
+    if(!count || !items || !totalEl) return;
+
+    count.innerText = cart.length;
+
+    items.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach((item,i)=>{
+
+        total += item.price;
+
+        items.innerHTML += `
+            <div>
+                ${item.name} €${item.price}
+                <span onclick="removeItem(${i})">❌</span>
+            </div>
+        `;
+
+    });
+
+    totalEl.innerText = "Total: " + total.toFixed(2) + "€";
+
+}
+
+updateCart();
