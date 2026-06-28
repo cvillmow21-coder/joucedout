@@ -55,11 +55,20 @@ header p{
 .category-buttons{
     position:relative;
     z-index:2;
+
     display:flex;
     justify-content:center;
+    align-items:center;
     gap:30px;
-    margin-top:60px;
     flex-wrap:wrap;
+
+    width:100%;
+    min-height:45vh;
+}
+
+    width:100%;
+    min-height:45vh;
+}
 }
 
 .category-buttons button{
