@@ -2,20 +2,72 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>JuicedOut</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Seite läuft wieder</h1>
+<div class="cart-wrapper">
 
-<button onclick="alert('JS funktioniert')">
-    Test Button
-</button>
+    <div class="cart-button" onclick="toggleCart()">
+        🛒 <span id="count">0</span>
+    </div>
 
-<script>
-alert("JS IST GELADEN");
-</script>
+    <div id="cartBox" class="cart-box hidden">
+
+        <h3>Warenkorb</h3>
+
+        <div id="cartItemsSmall"></div>
+
+        <a class="checkout-btn" href="checkout.html">Zum Checkout</a>
+
+        <div class="cart-close" onclick="toggleCart()">Schließen ✕</div>
+
+    </div>
+
+</div>
+
+<header class="hero">
+    <h1>JuicedOut</h1>
+    <p>sip a line and feel relaxed</p>
+</header>
+
+<section class="menu">
+
+    <div class="card" onclick="toggle('thc')">
+        <h2>THCJuice</h2>
+    </div>
+
+    <div class="card" onclick="toggle('kratom')">
+        <h2>KratomJuice</h2>
+    </div>
+
+    <div class="card" onclick="toggle('xanny')">
+        <h2>XannyJuice</h2>
+    </div>
+
+</section>
+
+<section id="thc" class="shop-section active">
+    <h2>THCJuice</h2>
+    <button onclick="addToCart('THC Classic', 19.99)">In den Warenkorb</button>
+</section>
+
+<section id="kratom" class="shop-section">
+    <h2>KratomJuice</h2>
+    <button onclick="addToCart('Kratom Green', 22.99)">In den Warenkorb</button>
+</section>
+
+<section id="xanny" class="shop-section">
+    <h2>XannyJuice</h2>
+    <button onclick="addToCart('Xanny Chill', 29.99)">In den Warenkorb</button>
+</section>
+
+<script src="script.js"></script>
 
 </body>
 </html>
