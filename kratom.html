@@ -14,21 +14,28 @@
 <body>
 
 <!-- CART -->
+
 <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
 </div>
 
-<div id="cart" class="cart hidden">
+<div id="cart" class="cart-panel hidden">
 
-    <h3>Warenkorb</h3>
+    <div class="cart-header">
+        <h3>Warenkorb</h3>
+        <span onclick="toggleCart()" class="close-cart">✖</span>
+    </div>
 
     <div id="cart-items"></div>
 
-    <p id="cart-total">Total: 0€</p>
-
-    <button onclick="clearCart()">Leeren</button>
+    <div class="cart-footer">
+        <p id="cart-total">Total: 0€</p>
+        <button onclick="clearCart()">Leeren</button>
+    </div>
 
 </div>
+
+<div id="overlay" class="overlay hidden" onclick="toggleCart()"></div>
 
 <!-- BACKGROUND -->
 <div class="bg-logo"></div>
