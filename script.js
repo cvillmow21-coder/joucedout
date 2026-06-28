@@ -1,9 +1,15 @@
+
 console.log("SCRIPT LOADED OK");
 
-// Warenkorb im globalen Scope
+// CART STATE
 window.cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* ADD TO CART */
+/* SAVE */
+function saveCart(){
+    localStorage.setItem("cart", JSON.stringify(window.cart));
+}
+
+/* ADD */
 window.addToCart = function(name, price){
 
     console.log("ADD WORKS:", name, price);
@@ -13,13 +19,11 @@ window.addToCart = function(name, price){
         price: Number(price)
     });
 
-    localStorage.setItem("cart", JSON.stringify(window.cart));
-
+    saveCart();
     updateCart();
-
 }
 
-/* TOGGLE CART */
+/* TOGGLE */
 window.toggleCart = function(){
 
     const cart = document.getElementById("cart");
@@ -35,29 +39,30 @@ window.toggleCart = function(){
     } else {
         cart.classList.add("hidden");
         overlay.classList.add("hidden");
-    }window.closeCart = function(){
+    }
+}
+
+/* CLOSE */
+window.closeCart = function(){
 
     const cart = document.getElementById("cart");
     const overlay = document.getElementById("overlay");
 
     if(cart) cart.classList.add("hidden");
     if(overlay) overlay.classList.add("hidden");
-
-}
-}
 }
 
-/* CLEAR CART */
+/* CLEAR */
 window.clearCart = function(){
     window.cart = [];
-    localStorage.setItem("cart", JSON.stringify(window.cart));
+    saveCart();
     updateCart();
 }
 
-/* REMOVE ITEM */
+/* REMOVE */
 window.removeItem = function(index){
     window.cart.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(window.cart));
+    saveCart();
     updateCart();
 }
 
@@ -94,6 +99,8 @@ function updateCart(){
 }
 
 updateCart();
+
+/* CHECKOUT */
 window.loadCheckout = function(){
 
     const items = document.getElementById("checkout-items");
@@ -121,10 +128,10 @@ window.loadCheckout = function(){
     });
 
     totalEl.innerText = "Total: " + total.toFixed(2) + "€";
-
 }
 
-/* AUTO LOAD */
-window.onload = function(){
+/* AUTO INIT */
+document.addEventListener("DOMContentLoaded", () => {
+    updateCart();
     loadCheckout();
-}
+});
