@@ -1,89 +1,11 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function toggleCategory(category){
 
-/* SAVE */
-function saveCart(){
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
+    const sections = document.querySelectorAll(".products");
 
-/* MACHE ALLES GLOBAL VERFÜGBAR */
-window.addToCart = function(name, price){
-
-    cart.push({
-        name: name,
-        price: Number(price)
+    sections.forEach(section=>{
+        section.classList.remove("active");
     });
 
-    saveCart();
-    updateCart();
+    document.getElementById(category).classList.add("active");
 
 }
-
-/* KATEGORIEN */
-window.toggle = function(id){
-
-    document.querySelectorAll(".shop-section").forEach(sec => {
-        sec.classList.toggle("active", sec.id === id);
-        if(sec.id !== id) sec.classList.remove("active");
-    });
-
-}
-
-/* CART TOGGLE */
-window.toggleCart = function(){
-
-    const box = document.getElementById("cartBox");
-    if(!box) return;
-
-    box.classList.toggle("hidden");
-
-}
-
-/* REMOVE ITEM */
-window.removeItem = function(index){
-
-    cart.splice(index, 1);
-    saveCart();
-    updateCart();
-
-}
-
-/* UPDATE CART UI */
-function updateCart(){
-
-    const count = document.getElementById("count");
-    if(count) count.innerText = cart.length;
-
-    const box = document.getElementById("cartItemsSmall");
-    if(!box) return;
-
-    box.innerHTML = "";
-
-    let total = 0;
-
-    if(cart.length === 0){
-        box.innerHTML = "<p style='opacity:0.6'>Cart is empty</p>";
-    }
-
-    cart.forEach((item, index) => {
-
-        total += item.price;
-
-        box.innerHTML += `
-            <div class="small-item">
-                <span>${item.name} - €${item.price.toFixed(2)}</span>
-                <button onclick="removeItem(${index})">X</button>
-            </div>
-        `;
-
-    });
-
-    box.innerHTML += `
-        <div style="margin-top:10px;font-weight:bold;">
-            Total: €${total.toFixed(2)}
-        </div>
-    `;
-
-}
-
-/* INIT */
-updateCart();
