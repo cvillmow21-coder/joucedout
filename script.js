@@ -30,3 +30,8 @@ function addToCart(name, price){
     alert(name + " wurde hinzugefügt 🛒");
 
 }
+function updateCart(){
+    document.getElementById("count").innerText = cart.length;
+}
+
+setInterval(updateCart, 500);
