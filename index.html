@@ -10,23 +10,32 @@
 
 <body>
 </div>
+<div class="cart-wrapper">
 
-<div id="cartBox" class="cart-box">
-
-    <h3>Warenkorb</h3>
-
-    <div id="cartItemsSmall"></div>
-
-    <a class="checkout-btn" href="checkout.html">
-        Zum Checkout
-    </a>
-
-    <!-- Warenkorb Icon UNTER Button -->
-    <div class="cart-icon-bottom" onclick="toggleCart()">
+    <div class="cart-button" onclick="toggleCart()">
         🛒 <span id="count">0</span>
     </div>
 
+    <div id="cartBox" class="cart-box hidden">
+
+        <h3>Warenkorb</h3>
+
+        <div id="cartItemsSmall"></div>
+
+        <div class="cart-footer">
+            <a class="checkout-btn" href="checkout.html">
+                Zum Checkout
+            </a>
+
+            <div class="cart-close" onclick="toggleCart()">
+                Schließen ✕
+            </div>
+        </div>
+
+    </div>
+
 </div>
+
 <div class="bg-logo"></div>
 
 <header class="hero">
