@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>JuicedOut</title>
 
 <link rel="stylesheet" href="style.css">
@@ -11,74 +10,67 @@
 
 <body>
 
-<!-- Background Logo -->
 <div class="bg-logo"></div>
 
-<!-- Header -->
 <header class="hero">
     <h1>JuicedOut</h1>
     <p>sip a line and feel relaxed</p>
 </header>
 
-<!-- Categories -->
 <section class="menu">
 
-    <div class="card thc" onclick="toggle('thc')">
+    <div class="card" onclick="toggle('thc')">
         <h2>THCJuice</h2>
         <span>ENTER SHOP</span>
     </div>
 
-    <div class="card kratom" onclick="toggle('kratom')">
+    <div class="card" onclick="toggle('kratom')">
         <h2>KratomJuice</h2>
         <span>ENTER SHOP</span>
     </div>
 
-    <div class="card xanny" onclick="toggle('xanny')">
+    <div class="card" onclick="toggle('xanny')">
         <h2>XannyJuice</h2>
         <span>ENTER SHOP</span>
     </div>
 
 </section>
-  <h2>THCJuice</h2>
 
-  <div class="products">
-    <div class="product">
-      <h3>THC Classic</h3>
-      <p class="price">€19.99</p>
-      <button>In den Warenkorb</button>
+<section id="thc" class="shop-section">
+    <h2>THCJuice</h2>
+
+    <div class="products">
+        <div class="product">
+            <h3>THC Classic</h3>
+            <p class="price">€19.99</p>
+            <button>In den Warenkorb</button>
+        </div>
     </div>
-  </div>
 </section>
 
-<section id="kratom" class="shop-section hidden">
-  <h2>KratomJuice</h2>
+<section id="kratom" class="shop-section">
+    <h2>KratomJuice</h2>
 
-  <div class="products">
-    <div class="product">
-      <h3>Kratom Green</h3>
-      <p class="price">€22.99</p>
-      <button>In den Warenkorb</button>
+    <div class="products">
+        <div class="product">
+            <h3>Kratom Green</h3>
+            <p class="price">€22.99</p>
+            <button>In den Warenkorb</button>
+        </div>
     </div>
-  </div>
 </section>
 
-<section id="xanny" class="shop-section hidden">
-  <h2>XannyJuice</h2>
+<section id="xanny" class="shop-section">
+    <h2>XannyJuice</h2>
 
-  <div class="products">
-    <div class="product">
-      <h3>Xanny Chill</h3>
-      <p class="price">€29.99</p>
-      <button>In den Warenkorb</button>
+    <div class="products">
+        <div class="product">
+            <h3>Xanny Chill</h3>
+            <p class="price">€29.99</p>
+            <button>In den Warenkorb</button>
+        </div>
     </div>
-  </div>
 </section>
-</section>
-
-<!-- Dummy Sections (kommen später Produkte rein) -->
-<div id="thc"></div>
-<div id="kratom"></div>
-<div id="xanny"></div>
 
 <script src="script.js"></script>
 
