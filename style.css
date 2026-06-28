@@ -380,3 +380,34 @@ header p{
     border-top:1px solid #ff3ebf;
     padding-top:10px;
 }
+.checkout-container{
+    max-width:700px;
+    margin:50px auto;
+    padding:20px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid #ff3ebf;
+    border-radius:15px;
+}
+
+#checkout-items div{
+    display:flex;
+    justify-content:space-between;
+    margin:10px 0;
+}
+
+.checkout-container button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+
+    border:none;
+    border-radius:12px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    color:white;
+    background:linear-gradient(90deg,#ff3ebf,#9d4dff);
+
+    cursor:pointer;
+}
