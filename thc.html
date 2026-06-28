@@ -13,16 +13,17 @@
 
 <body>
 
-<!-- CART -->
+<!-- CART ICON -->
 <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
 </div>
 
+<!-- CART PANEL -->
 <div id="cart" class="cart-panel hidden">
 
     <div class="cart-header">
         <h3>Warenkorb</h3>
-        <span onclick="toggleCart()" class="close-cart">✖</span>
+        <span onclick="closeCart()" class="close-cart">✖</span>
     </div>
 
     <div id="cart-items"></div>
@@ -32,11 +33,15 @@
         <button onclick="clearCart()">Leeren</button>
     </div>
 
+</div>
+
+<!-- OVERLAY (MUSS AUSSERHALB SEIN) -->
 <div id="overlay" class="overlay hidden" onclick="closeCart()"></div>
 
-<!-- HEADER -->
+<!-- BACKGROUND -->
 <div class="bg-logo"></div>
 
+<!-- HEADER -->
 <header>
 
 <a href="index.html">
