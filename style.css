@@ -161,3 +161,37 @@ button{
     margin-top:30px;
     color:#ff4fd8;
 }
+.cart{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:rgba(255,255,255,0.08);
+    padding:10px 15px;
+    border-radius:12px;
+    cursor:pointer;
+    z-index:999;
+}
+
+.cart-box{
+    position:fixed;
+    top:70px;
+    right:20px;
+    width:260px;
+    background:rgba(0,0,0,0.85);
+    border-radius:12px;
+    padding:15px;
+    display:none;
+    z-index:999;
+}
+
+.cart-box a{
+    display:block;
+    margin-top:10px;
+    color:#ff4fd8;
+    text-decoration:none;
+}
+
+.small-item{
+    font-size:14px;
+    margin:5px 0;
+}
