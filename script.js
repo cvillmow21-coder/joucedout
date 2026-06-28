@@ -5,7 +5,7 @@ function saveCart(){
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-/* TOGGLE KATEGORIEN */
+/* KATEGORIEN */
 function toggle(id){
 
     const sections = document.querySelectorAll(".shop-section");
@@ -28,14 +28,12 @@ function addToCart(name, price){
 
 /* REMOVE */
 function removeItem(index){
-
     cart.splice(index, 1);
     saveCart();
     updateCart();
-
 }
 
-/* CART UPDATE */
+/* UPDATE CART */
 function updateCart(){
 
     const count = document.getElementById("count");
@@ -73,7 +71,7 @@ function updateCart(){
 
 }
 
-/* TOGGLE CART */
+/* CART TOGGLE */
 function toggleCart(){
 
     const box = document.getElementById("cartBox");
