@@ -1,1 +1,180 @@
+/* ---------- RESET ---------- */
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(180deg,#1b082b,#090611);
+    color:white;
+}
+
+/* ---------- BACKGROUND LOGO ---------- */
+
+.bg-logo{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:70vw;
+    height:70vw;
+    background:url("5270.png") center center no-repeat;
+    background-size:contain;
+    opacity:.05;
+    pointer-events:none;
+    z-index:-1;
+}
+
+/* ---------- NAVBAR ---------- */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 50px;
+    background:rgba(15,15,25,.75);
+    backdrop-filter:blur(15px);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo img{
+    height:110px;
+}
+
+.navbar ul{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.navbar a:hover{
+    color:#ff5fd8;
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+    text-align:center;
+    padding:90px 20px;
+}
+
+.hero h1{
+    font-size:60px;
+    background:linear-gradient(90deg,#ff66dd,#b64cff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:22px;
+    color:#d9b6ff;
+}
+
+/* ---------- KATEGORIEN ---------- */
+
+section{
+    max-width:1200px;
+    margin:80px auto;
+    padding:0 25px;
+}
+
+section h2{
+    text-align:center;
+    font-size:42px;
+    color:#ff66dd;
+    margin-bottom:40px;
+}
+
+/* ---------- PRODUKTE ---------- */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+.product{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    transition:.3s;
+}
+
+.product:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px rgba(255,0,170,.25);
+}
+
+.product img{
+    width:170px;
+    margin-bottom:20px;
+}
+
+.product h3{
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:24px;
+    color:#ff66dd;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.product button{
+    background:linear-gradient(90deg,#ff4fd8,#9a4dff);
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.product button:hover{
+    transform:scale(1.05);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:850px){
+
+.navbar{
+    flex-direction:column;
+    gap:20px;
+}
+
+.navbar ul{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.hero h1{
+    font-size:42px;
+}
+
+.logo img{
+    height:80px;
+}
+
+}
