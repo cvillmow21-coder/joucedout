@@ -214,3 +214,34 @@ button{
     cursor:pointer;
     font-size:18px;
 }
+/* CART ITEM */
+.small-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:8px 0;
+    padding:8px;
+    background:rgba(255,255,255,0.06);
+    border-radius:10px;
+    font-size:14px;
+}
+
+/* REMOVE BUTTON */
+.small-item button{
+    background:red;
+    border:none;
+    color:white;
+    padding:4px 8px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* CART BOX TITLE LOOK */
+.cart-box h3{
+    margin-bottom:10px;
+}
+
+/* EMPTY STATE */
+.cart-box p{
+    font-size:13px;
+}
