@@ -5,19 +5,19 @@ function saveCart(){
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-/* KATEGORIEN */
+/* TOGGLE KATEGORIEN */
 function toggle(id){
 
     const sections = document.querySelectorAll(".shop-section");
 
     sections.forEach(sec => {
-        sec.classList.toggle("active", sec.id === id && !sec.classList.contains("active"));
+        sec.classList.toggle("active", sec.id === id);
         if(sec.id !== id) sec.classList.remove("active");
     });
 
 }
 
-/* ADD */
+/* ADD TO CART */
 function addToCart(name, price){
 
     cart.push({name, price});
@@ -26,7 +26,7 @@ function addToCart(name, price){
 
 }
 
-/* REMOVE ITEM */
+/* REMOVE */
 function removeItem(index){
 
     cart.splice(index, 1);
@@ -35,7 +35,7 @@ function removeItem(index){
 
 }
 
-/* UPDATE CART UI */
+/* CART UPDATE */
 function updateCart(){
 
     const count = document.getElementById("count");
@@ -66,10 +66,11 @@ function updateCart(){
     });
 
     box.innerHTML += `
-        <div style="margin-top:10px; font-weight:bold;">
+        <div style="margin-top:10px;font-weight:bold;">
             Total: €${total.toFixed(2)}
         </div>
     `;
+
 }
 
 /* TOGGLE CART */
@@ -79,11 +80,7 @@ function toggleCart(){
 
     if(!box) return;
 
-    if(box.style.display === "block"){
-        box.style.display = "none";
-    } else {
-        box.style.display = "block";
-    }
+    box.classList.toggle("hidden");
 
 }
 
