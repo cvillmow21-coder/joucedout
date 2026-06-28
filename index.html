@@ -1,73 +1,52 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JuicedOut</title>
 
-<title>JuicedOut</title>
-
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="cart-wrapper">
+<div class="bg-logo"></div>
 
-    <div class="cart-button" onclick="toggleCart()">
-        🛒 <span id="count">0</span>
-    </div>
+<header>
 
-    <div id="cartBox" class="cart-box hidden">
+    <img src="5270.png" class="logo" alt="JuicedOut Logo">
 
-        <h3>Warenkorb</h3>
+    <h1>JuicedOut</h1>
 
-        <div id="cartItemsSmall"></div>
+    <p>sip a line and feel relaxed</p>
 
-        <a class="checkout-btn" href="checkout.html">Zum Checkout</a>
+</header>
 
-        <div class="cart-close" onclick="toggleCart()">Schließen ✕</div>
+<main>
 
-    </div>
+<div class="category-buttons">
+
+<button onclick="toggleCategory('thc')">
+THCJuice
+</button>
+
+<button onclick="toggleCategory('kratom')">
+KratomJuice
+</button>
+
+<button onclick="toggleCategory('xanny')">
+XannyJuice
+</button>
 
 </div>
 
-<header class="hero">
-    <h1>JuicedOut</h1>
-    <p>sip a line and feel relaxed</p>
-</header>
+<div id="thc" class="products"></div>
 
-<section class="menu">
+<div id="kratom" class="products"></div>
 
-    <div class="card" onclick="toggle('thc')">
-        <h2>THCJuice</h2>
-    </div>
+<div id="xanny" class="products"></div>
 
-    <div class="card" onclick="toggle('kratom')">
-        <h2>KratomJuice</h2>
-    </div>
-
-    <div class="card" onclick="toggle('xanny')">
-        <h2>XannyJuice</h2>
-    </div>
-
-</section>
-
-<section id="thc" class="shop-section active">
-    <h2>THCJuice</h2>
-    <button onclick="alert('BUTTON WORKS')">
-    TEST
-</button>
-</section>
-
-<section id="kratom" class="shop-section">
-    <h2>KratomJuice</h2>
-    <button onclick="addToCart('Kratom Green', 22.99)">In den Warenkorb</button>
-</section>
-
-<section id="xanny" class="shop-section">
-    <h2>XannyJuice</h2>
-    <button onclick="addToCart('Xanny Chill', 29.99)">In den Warenkorb</button>
-</section>
+</main>
 
 <script src="script.js"></script>
 
