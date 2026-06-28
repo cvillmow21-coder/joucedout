@@ -1,73 +1,75 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+console.log("SCRIPT LOADED OK");
 
-/* SAVE */
-function save(){
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
+// Warenkorb im globalen Scope
+window.cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* ADD */
-function addToCart(name, price){
+/* ADD TO CART */
+window.addToCart = function(name, price){
 
-    cart.push({name, price});
-    save();
-    updateCart();
+    console.log("ADD WORKS:", name, price);
 
-}
+    window.cart.push({
+        name: name,
+        price: Number(price)
+    });
 
-/* REMOVE */
-function removeItem(index){
+    localStorage.setItem("cart", JSON.stringify(window.cart));
 
-    cart.splice(index,1);
-    save();
-    updateCart();
-
-}
-
-/* CLEAR */
-function clearCart(){
-
-    cart = [];
-    save();
     updateCart();
 
 }
 
 /* TOGGLE CART */
-function toggleCart(){
+window.toggleCart = function(){
+    const cartBox = document.getElementById("cart");
+    if(cartBox){
+        cartBox.classList.toggle("hidden");
+    }
+}
 
-    document.getElementById("cart").classList.toggle("hidden");
+/* CLEAR CART */
+window.clearCart = function(){
+    window.cart = [];
+    localStorage.setItem("cart", JSON.stringify(window.cart));
+    updateCart();
+}
 
+/* REMOVE ITEM */
+window.removeItem = function(index){
+    window.cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(window.cart));
+    updateCart();
 }
 
 /* UPDATE UI */
 function updateCart(){
 
-    let count = document.getElementById("cart-count");
-    let items = document.getElementById("cart-items");
-    let totalEl = document.getElementById("cart-total");
+    const count = document.getElementById("cart-count");
+    const items = document.getElementById("cart-items");
+    const total = document.getElementById("cart-total");
 
-    if(!count || !items || !totalEl) return;
+    if(!count || !items || !total) return;
 
-    count.innerText = cart.length;
+    count.innerText = window.cart.length;
 
     items.innerHTML = "";
 
-    let total = 0;
+    let sum = 0;
 
-    cart.forEach((item,i)=>{
+    window.cart.forEach((item, i) => {
 
-        total += item.price;
+        sum += item.price;
 
         items.innerHTML += `
             <div>
-                ${item.name} €${item.price}
-                <span onclick="removeItem(${i})">❌</span>
+                ${item.name} - €${item.price.toFixed(2)}
+                <span onclick="removeItem(${i})" style="cursor:pointer;">❌</span>
             </div>
         `;
 
     });
 
-    totalEl.innerText = "Total: " + total.toFixed(2) + "€";
+    total.innerText = "Total: " + sum.toFixed(2) + "€";
 
 }
 
