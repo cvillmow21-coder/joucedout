@@ -38,7 +38,20 @@
 
 </div>
 
-<div id="overlay" class="overlay hidden" onclick="toggleCart()"></div>
+<div id="cart" class="cart hidden">
+
+    <h3>Warenkorb</h3>
+
+    <div id="cart-items"></div>
+
+    <p id="cart-total">Total: 0€</p>
+
+    <button onclick="clearCart()">Leeren</button>
+
+</div>
+
+<!-- HIER MUSS DER OVERLAY HIN -->
+<div id="overlay" class="overlay hidden" onclick="closeCart()"></div>
 
 <!-- BACKGROUND -->
 <div class="bg-logo"></div>
