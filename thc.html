@@ -12,7 +12,21 @@
 </head>
 
 <body>
+<div class="cart-icon" onclick="toggleCart()">
+    🛒 <span id="cart-count">0</span>
+</div>
 
+<div id="cart" class="cart hidden">
+
+    <h3>Warenkorb</h3>
+
+    <div id="cart-items"></div>
+
+    <p id="cart-total">Total: 0€</p>
+
+    <button onclick="clearCart()">Leeren</button>
+
+</div>
 <div class="bg-logo"></div>
 
 <header>
