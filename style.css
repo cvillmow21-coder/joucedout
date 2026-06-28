@@ -203,3 +203,40 @@ header p{
     box-shadow:0 0 40px rgba(255,70,210,.8);
 
 }
+/* PRODUKT BUTTON */
+
+.product-card button{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:linear-gradient(90deg,#ff3ebf,#9d4dff);
+
+    box-shadow:0 0 20px rgba(255,70,210,.45);
+
+    transition:.25s;
+
+}
+
+.product-card button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 0 35px rgba(255,70,210,.75);
+
+}
