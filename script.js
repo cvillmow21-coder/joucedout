@@ -79,7 +79,11 @@ function toggleCart(){
 
     if(!box) return;
 
-    box.style.display = (box.style.display === "block") ? "none" : "block";
+    if(box.style.display === "block"){
+        box.style.display = "none";
+    } else {
+        box.style.display = "block";
+    }
 
 }
 
