@@ -12,6 +12,8 @@
 </head>
 
 <body>
+
+<!-- CART -->
 <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
 </div>
@@ -27,8 +29,11 @@
     <button onclick="clearCart()">Leeren</button>
 
 </div>
+
+<!-- BACKGROUND -->
 <div class="bg-logo"></div>
 
+<!-- HEADER -->
 <header>
 
 <a href="index.html">
@@ -41,37 +46,40 @@
 
 </header>
 
+<!-- PRODUCTS -->
+<main>
+
 <section class="products active">
 
-<div class="product-card">
+    <div class="product-card">
 
-<h3>Xanny Chill</h3>
+        <h3>Xanny Chill</h3>
+        <p>10ml</p>
+        <span>24.99 €</span>
 
-<p>10ml</p>
+        <button onclick="addToCart('Xanny Chill', 24.99)">
+            In den Warenkorb
+        </button>
 
-<span>24,99 €</span>
+    </div>
 
-<br><br>
+    <div class="product-card">
 
-<button>In den Warenkorb</button>
+        <h3>Xanny Max</h3>
+        <p>20ml</p>
+        <span>34.99 €</span>
 
-</div>
+        <button onclick="addToCart('Xanny Max', 34.99)">
+            In den Warenkorb
+        </button>
 
-<div class="product-card">
-
-<h3>Xanny Max</h3>
-
-<p>20ml</p>
-
-<span>34,99 €</span>
-
-<br><br>
-
-<button>In den Warenkorb</button>
-
-</div>
+    </div>
 
 </section>
+
+</main>
+
+<script src="script.js"></script>
 
 </body>
 </html>
