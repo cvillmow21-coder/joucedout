@@ -21,10 +21,15 @@ window.addToCart = function(name, price){
 
 /* TOGGLE CART */
 window.toggleCart = function(){
-    const cartBox = document.getElementById("cart");
-    if(cartBox){
-        cartBox.classList.toggle("hidden");
-    }
+
+    const cart = document.getElementById("cart");
+    const overlay = document.getElementById("overlay");
+
+    if(!cart || !overlay) return;
+
+    cart.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
+
 }
 
 /* CLEAR CART */
