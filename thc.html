@@ -12,6 +12,8 @@
 </head>
 
 <body>
+
+<!-- CART -->
 <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
 </div>
@@ -27,6 +29,8 @@
     <button onclick="clearCart()">Leeren</button>
 
 </div>
+
+<!-- HEADER -->
 <div class="bg-logo"></div>
 
 <header>
@@ -41,37 +45,40 @@
 
 </header>
 
-<section class="products active">
+<!-- PRODUCTS -->
+<main>
 
-<div class="product-card">
+<div class="products active">
 
-<h3>THC Juice Classic</h3>
+    <div class="product-card">
 
-<p>10ml</p>
+        <h3>THC Juice Classic</h3>
+        <p>10ml</p>
+        <span>19.99 €</span>
 
-<span>19,99 €</span>
+        <button onclick="addToCart('THC Juice Classic', 19.99)">
+            In den Warenkorb
+        </button>
 
-<br><br>
+    </div>
 
-<button>In den Warenkorb</button>
+    <div class="product-card">
+
+        <h3>THC Juice Premium</h3>
+        <p>20ml</p>
+        <span>29.99 €</span>
+
+        <button onclick="addToCart('THC Juice Premium', 29.99)">
+            In den Warenkorb
+        </button>
+
+    </div>
 
 </div>
 
-<div class="product-card">
+</main>
 
-<h3>THC Juice Premium</h3>
-
-<p>20ml</p>
-
-<span>29,99 €</span>
-
-<br><br>
-
-<button>In den Warenkorb</button>
-
-</div>
-
-</section>
+<script src="script.js"></script>
 
 </body>
 </html>
