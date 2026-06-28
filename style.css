@@ -265,3 +265,56 @@ header p{
     box-shadow:0 0 35px rgba(255,70,210,.75);
 
 }
+/* CART ICON */
+.cart-icon{
+    position:fixed;
+    top:20px;
+    right:20px;
+
+    background:linear-gradient(90deg,#ff3ebf,#9d4dff);
+    padding:12px 16px;
+    border-radius:12px;
+    cursor:pointer;
+
+    z-index:999;
+    font-size:18px;
+}
+
+/* CART BOX */
+.cart{
+    position:fixed;
+    top:70px;
+    right:20px;
+
+    width:280px;
+    background:#1a001f;
+    border:1px solid #ff3ebf;
+
+    border-radius:14px;
+    padding:15px;
+
+    z-index:999;
+}
+
+.hidden{
+    display:none;
+}
+
+#cart-items div{
+    display:flex;
+    justify-content:space-between;
+    margin:10px 0;
+    font-size:14px;
+}
+
+#cart button{
+    width:100%;
+    margin-top:10px;
+    padding:8px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+
+    background:#ff3ebf;
+    color:white;
+}
