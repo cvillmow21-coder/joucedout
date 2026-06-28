@@ -195,3 +195,22 @@ button{
     font-size:14px;
     margin:5px 0;
 }
+.checkout-btn{
+    display:block;
+    text-align:center;
+    margin-top:10px;
+    padding:10px;
+    background:linear-gradient(90deg,#ff4fd8,#8a4dff);
+    color:white;
+    border-radius:10px;
+    text-decoration:none;
+}
+
+.cart-icon-bottom{
+    margin-top:12px;
+    text-align:center;
+    padding:10px;
+    border-top:1px solid rgba(255,255,255,0.1);
+    cursor:pointer;
+    font-size:18px;
+}
