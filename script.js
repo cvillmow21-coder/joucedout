@@ -27,9 +27,24 @@ window.toggleCart = function(){
 
     if(!cart || !overlay) return;
 
-    cart.classList.toggle("hidden");
-    overlay.classList.toggle("hidden");
+    const isHidden = cart.classList.contains("hidden");
 
+    if(isHidden){
+        cart.classList.remove("hidden");
+        overlay.classList.remove("hidden");
+    } else {
+        cart.classList.add("hidden");
+        overlay.classList.add("hidden");
+    }window.closeCart = function(){
+
+    const cart = document.getElementById("cart");
+    const overlay = document.getElementById("overlay");
+
+    if(cart) cart.classList.add("hidden");
+    if(overlay) overlay.classList.add("hidden");
+
+}
+}
 }
 
 /* CLEAR CART */
