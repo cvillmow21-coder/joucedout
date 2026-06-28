@@ -9,7 +9,9 @@
 </head>
 
 <body>
-
+<div class="cart">
+    🛒 <span id="count">0</span>
+</div>
 <div class="bg-logo"></div>
 
 <header class="hero">
@@ -43,7 +45,9 @@
         <div class="product">
             <h3>THC Classic</h3>
             <p class="price">€19.99</p>
-            <button>In den Warenkorb</button>
+            <button onclick="addToCart('THC Classic', 19.99)">
+    In den Warenkorb
+</button>
         </div>
     </div>
 </section>
@@ -55,7 +59,9 @@
         <div class="product">
             <h3>Kratom Green</h3>
             <p class="price">€22.99</p>
-            <button>In den Warenkorb</button>
+            <button onclick="addToCart('Kratom Green', 22.99)">
+    In den Warenkorb
+</button>
         </div>
     </div>
 </section>
@@ -67,7 +73,9 @@
         <div class="product">
             <h3>Xanny Chill</h3>
             <p class="price">€29.99</p>
-            <button>In den Warenkorb</button>
+            <button onclick="addToCart('Xanny Chill', 29.99)">
+    In den Warenkorb
+</button>
         </div>
     </div>
 </section>
