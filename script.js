@@ -1,19 +1,15 @@
-document.addEventListener("DOMContentLoaded", () => {
+function toggle(id){
 
-    window.toggle = function(id){
+    const sections = document.querySelectorAll(".shop-section");
 
-        const sections = document.querySelectorAll(".shop-section");
+    sections.forEach(sec => {
 
-        sections.forEach(sec => {
+        if(sec.id === id){
+            sec.classList.toggle("active");
+        } else {
+            sec.classList.remove("active");
+        }
 
-            if(sec.id === id){
-                sec.classList.toggle("active");
-            } else {
-                sec.classList.remove("active");
-            }
+    });
 
-        });
-
-    };
-
-});
+}
