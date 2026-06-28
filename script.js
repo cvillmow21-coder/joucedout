@@ -1,3 +1,10 @@
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function saveCart(){
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+/* KATEGORIEN TOGGLE */
 function toggle(id){
 
     const sections = document.querySelectorAll(".shop-section");
@@ -11,5 +18,15 @@ function toggle(id){
         }
 
     });
+
+}
+
+/* ADD TO CART */
+function addToCart(name, price){
+
+    cart.push({name, price});
+    saveCart();
+
+    alert(name + " wurde hinzugefügt 🛒");
 
 }
