@@ -79,3 +79,37 @@ function updateCart(){
 }
 
 updateCart();
+window.loadCheckout = function(){
+
+    const items = document.getElementById("checkout-items");
+    const totalEl = document.getElementById("checkout-total");
+
+    if(!items || !totalEl) return;
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    items.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach(item => {
+
+        total += item.price;
+
+        items.innerHTML += `
+            <div>
+                ${item.name}
+                <span>€${item.price.toFixed(2)}</span>
+            </div>
+        `;
+
+    });
+
+    totalEl.innerText = "Total: " + total.toFixed(2) + "€";
+
+}
+
+/* AUTO LOAD */
+window.onload = function(){
+    loadCheckout();
+}
