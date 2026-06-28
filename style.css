@@ -144,41 +144,17 @@ body{
 html{
     scroll-behavior:smooth;
 }
-/* HIDE SECTIONS */
-.hidden{
-    display:none;
-}
-
-/* SHOW SECTION */
 .shop-section{
+    display:none;
     margin-top:60px;
     padding:40px 20px;
     position:relative;
     z-index:2;
-/* HIDE SECTIONS */
-.hidden{
-    display:none;
 }
 
-/* SHOW SECTION */
-.shop-section{
-    margin-top:60px;
-    padding:40px 20px;
-    position:relative;
-    z-index:2;
-/* HIDE SECTIONS */
-.hidden{
-    display:none;
+.shop-section.active{
+    display:block;
 }
-
-/* SHOW SECTION */
-.shop-section{
-    margin-top:60px;
-    padding:40px 20px;
-    position:relative;
-    z-index:2;
-/* HIDE SECTIONS */
-.hidden{
     display:none;
 }
 
