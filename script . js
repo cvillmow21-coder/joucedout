@@ -1,53 +1,89 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+/* SAVE */
 function saveCart(){
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+/* MACHE ALLES GLOBAL VERFÜGBAR */
 window.addToCart = function(name, price){
-    cart.push({name, price});
+
+    cart.push({
+        name: name,
+        price: Number(price)
+    });
+
     saveCart();
     updateCart();
+
 }
 
+/* KATEGORIEN */
 window.toggle = function(id){
-    document.querySelectorAll(".shop-section").forEach(sec=>{
+
+    document.querySelectorAll(".shop-section").forEach(sec => {
         sec.classList.toggle("active", sec.id === id);
         if(sec.id !== id) sec.classList.remove("active");
     });
+
 }
 
+/* CART TOGGLE */
 window.toggleCart = function(){
-    document.getElementById("cartBox").classList.toggle("hidden");
+
+    const box = document.getElementById("cartBox");
+    if(!box) return;
+
+    box.classList.toggle("hidden");
+
 }
 
-window.removeItem = function(i){
-    cart.splice(i,1);
+/* REMOVE ITEM */
+window.removeItem = function(index){
+
+    cart.splice(index, 1);
     saveCart();
     updateCart();
+
 }
 
+/* UPDATE CART UI */
 function updateCart(){
 
-    document.getElementById("count").innerText = cart.length;
+    const count = document.getElementById("count");
+    if(count) count.innerText = cart.length;
 
-    let box = document.getElementById("cartItemsSmall");
+    const box = document.getElementById("cartItemsSmall");
+    if(!box) return;
+
     box.innerHTML = "";
 
     let total = 0;
 
-    cart.forEach((item,i)=>{
+    if(cart.length === 0){
+        box.innerHTML = "<p style='opacity:0.6'>Cart is empty</p>";
+    }
+
+    cart.forEach((item, index) => {
+
         total += item.price;
 
         box.innerHTML += `
-            <div>
-                ${item.name} - €${item.price.toFixed(2)}
-                <button onclick="removeItem(${i})">X</button>
+            <div class="small-item">
+                <span>${item.name} - €${item.price.toFixed(2)}</span>
+                <button onclick="removeItem(${index})">X</button>
             </div>
         `;
+
     });
 
-    box.innerHTML += `<p>Total: €${total.toFixed(2)}</p>`;
+    box.innerHTML += `
+        <div style="margin-top:10px;font-weight:bold;">
+            Total: €${total.toFixed(2)}
+        </div>
+    `;
+
 }
 
+/* INIT */
 updateCart();
