@@ -211,7 +211,16 @@ header p{
 
     transition:.25s;
 }
+.category-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    flex-wrap:wrap;
 
+    width:100%;
+    min-height:45vh;
+}
 .category-btn:hover{
 
     transform:translateY(-6px);
