@@ -172,4 +172,34 @@ header p{
 
     font-weight:bold;
 
+.category-btn{
 
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:230px;
+    height:75px;
+
+    text-decoration:none;
+
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+
+    border-radius:18px;
+
+    background:linear-gradient(90deg,#ff3ebf,#9d4dff);
+
+    box-shadow:0 0 25px rgba(255,70,210,.45);
+
+    transition:.25s;
+}
+
+.category-btn:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 0 40px rgba(255,70,210,.8);
+
+}
