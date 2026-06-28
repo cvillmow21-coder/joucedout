@@ -219,7 +219,7 @@ header p{
     flex-wrap:wrap;
 
     width:100%;
-    min-height:45vh;
+    margin-top:70px;
 }
 .category-btn:hover{
 
