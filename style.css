@@ -52,23 +52,40 @@ header p{
 
 /* Kategoriebuttons */
 
-.category-buttons{
-    position:relative;
-    z-index:2;
+.category-btn{
 
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:30px;
-    flex-wrap:wrap;
 
-    width:100%;
-    min-height:45vh;
+    width:230px;
+    height:75px;
+
+    border:none;
+    border-radius:14px;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+
+    background:linear-gradient(90deg,#ff3ebf,#9d4dff);
+
+    box-shadow:0 0 20px rgba(255,70,210,.45);
+
+    transition:.25s;
+
 }
 
-    width:100%;
-    min-height:45vh;
-}
+.category-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 0 35px rgba(255,70,210,.75);
+
 }
 
 .category-buttons button{
