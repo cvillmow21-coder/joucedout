@@ -7,7 +7,108 @@
 
 <title>XannyJuice | JuicedOut</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="st<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XannyJuice | JuicedOut</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Hintergrund -->
+<div class="bg-logo"></div>
+
+<!-- Warenkorb Icon -->
+<div class="cart-icon" onclick="toggleCart()">
+    🛒 <span id="cart-count">0</span>
+</div>
+
+<!-- Warenkorb -->
+<div id="cart" class="cart-panel hidden">
+
+    <div class="cart-header">
+        <h3>Warenkorb</h3>
+        <span class="close-cart" onclick="closeCart()">✖</span>
+    </div>
+
+    <div id="cart-items"></div>
+
+    <div class="cart-footer">
+
+        <p id="cart-total">Total: €0.00</p>
+
+        <button onclick="location.href='checkout.html'">
+            Zum Checkout
+        </button>
+
+        <button onclick="clearCart()">
+            Warenkorb leeren
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Overlay -->
+<div id="overlay" class="overlay hidden" onclick="closeCart()"></div>
+
+<!-- Header -->
+<header>
+
+    <a href="index.html">
+        <img src="5270.png" class="logo" alt="JuicedOut Logo">
+    </a>
+
+    <h1>XannyJuice</h1>
+
+    <p>Choose your Juice</p>
+
+</header>
+
+<!-- Produkte -->
+<main>
+
+    <div class="products">
+
+        <div class="product-card">
+
+            <h3>XannyJuice Chill</h3>
+            <p>10ml</p>
+
+            <span>24.99 €</span>
+
+            <button onclick="addToCart('XannyJuice Chill', 24.99)">
+                In den Warenkorb
+            </button>
+
+        </div>
+
+        <div class="product-card">
+
+            <h3>XannyJuice Max</h3>
+            <p>20ml</p>
+
+            <span>34.99 €</span>
+
+            <button onclick="addToCart('XannyJuice Max', 34.99)">
+                In den Warenkorb
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>yle.css">
 
 </head>
 
