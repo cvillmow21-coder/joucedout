@@ -1,3 +1,31 @@
+console.log("PRO SHOP LOADED ✔");
+
+// =========================
+// PRODUCTS DATABASE
+// =========================
+
+window.products = [
+    {
+        id: 1,
+        name: "THC Juice Classic",
+        price: 19.99
+    },
+    {
+        id: 2,
+        name: "THC Juice Premium",
+        price: 29.99
+    },
+    {
+        id: 3,
+        name: "Kratom Green",
+        price: 17.99
+    },
+    {
+        id: 4,
+        name: "Kratom Gold",
+        price: 27.99
+    }
+];
 console.log("SCRIPT LOADED");
 
 // =========================
