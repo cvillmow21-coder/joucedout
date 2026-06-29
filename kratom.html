@@ -1,32 +1,25 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KratomJuice | JuicedOut</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>KratomJuice | JuicedOut</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+<!-- Hintergrund -->
+<div class="bg-logo"></div>
+
+<!-- Warenkorb Icon -->
 <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
 </div>
 
-<div id="cart" class="cart-panel hidden">
-    ...
-    <div id="cart-items"></div>
-    <p id="cart-total">Total: €0.00</p>
-</div>
-
-<div id="overlay" class="overlay hidden" onclick="closeCart()"></div>
-
-<script src="script.js"></script>
-
-<!-- CART PANEL -->
+<!-- Warenkorb -->
 <div id="cart" class="cart-panel hidden">
 
     <div class="cart-header">
@@ -38,66 +31,68 @@
 
     <div class="cart-footer">
 
-    <p id="cart-total">Total: €0.00</p>
+        <p id="cart-total">Total: €0.00</p>
 
-    <button onclick="location.href='checkout.html'">
-        Zum Checkout
-    </button>
+        <button onclick="location.href='checkout.html'">
+            Zum Checkout
+        </button>
 
-    <button onclick="clearCart()">
-        Warenkorb leeren
-    </button>
+        <button onclick="clearCart()">
+            Warenkorb leeren
+        </button>
+
+    </div>
 
 </div>
 
-</div>
-
-<!-- OVERLAY -->
+<!-- Overlay -->
 <div id="overlay" class="overlay hidden" onclick="closeCart()"></div>
 
-<div class="bg-logo"></div>
-
+<!-- Header -->
 <header>
 
-<a href="index.html">
-    <img src="5270.png" class="logo" alt="JuicedOut Logo">
-</a>
+    <a href="index.html">
+        <img src="5270.png" class="logo" alt="JuicedOut Logo">
+    </a>
 
-<h1>KratomJuice</h1>
+    <h1>KratomJuice</h1>
 
-<p>Choose your Juice</p>
+    <p>Choose your Juice</p>
 
 </header>
 
+<!-- Produkte -->
 <main>
 
-<div class="products active">
+    <div class="products">
 
-    <div class="product-card">
+        <div class="product-card">
 
-        <h3>Kratom Green</h3>
-        <p>10ml</p>
-        <span>17.99 €</span>
+            <h3>KratomJuice Green</h3>
+            <p>10ml</p>
 
-        <button onclick="addToCart('Kratom Green',17.99)">
-            In den Warenkorb
-        </button>
+            <span>17.99 €</span>
+
+            <button onclick="addToCart('KratomJuice Green', 17.99)">
+                In den Warenkorb
+            </button>
+
+        </div>
+
+        <div class="product-card">
+
+            <h3>KratomJuice Gold</h3>
+            <p>20ml</p>
+
+            <span>27.99 €</span>
+
+            <button onclick="addToCart('KratomJuice Gold', 27.99)">
+                In den Warenkorb
+            </button>
+
+        </div>
 
     </div>
-
-    <div class="product-card">
-
-        <h3>Kratom Gold</h3>
-        <p>20ml</p>
-        <span>27.99 €</span>
-
-        <button onclick="addToCart('Kratom Gold',27.99)">
-            In den Warenkorb
-        </button>
-
-    </div>
-
-</div>
 
 </main>
 
