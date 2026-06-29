@@ -1,137 +1,155 @@
+console.log("JuicedOut Script geladen");
 
-console.log("SCRIPT LOADED OK");
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// CART STATE
-window.cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-/* SAVE */
-function saveCart(){
-    localStorage.setItem("cart", JSON.stringify(window.cart));
+/* -------------------------
+   WARENKORB SPEICHERN
+------------------------- */
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-/* ADD */
-window.addToCart = function(name, price){
+/* -------------------------
+   PRODUKT HINZUFÜGEN
+------------------------- */
+window.addToCart = function(name, price) {
 
-    console.log("ADD WORKS:", name, price);
-
-    window.cart.push({
+    cart.push({
         name: name,
         price: Number(price)
     });
 
     saveCart();
     updateCart();
+
 }
 
-/* TOGGLE */
-window.toggleCart = function(){
+/* -------------------------
+   WARENKORB ÖFFNEN/SCHLIESSEN
+------------------------- */
+window.toggleCart = function() {
 
-    const cart = document.getElementById("cart");
+    const panel = document.getElementById("cart");
     const overlay = document.getElementById("overlay");
 
-    if(!cart || !overlay) return;
+    if (!panel || !overlay) return;
 
-    const isHidden = cart.classList.contains("hidden");
+    panel.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
 
-    if(isHidden){
-        cart.classList.remove("hidden");
-        overlay.classList.remove("hidden");
-    } else {
-        cart.classList.add("hidden");
-        overlay.classList.add("hidden");
-    }
 }
 
-/* CLOSE */
-window.closeCart = function(){
+/* -------------------------
+   WARENKORB SCHLIESSEN
+------------------------- */
+window.closeCart = function() {
 
-    const cart = document.getElementById("cart");
+    const panel = document.getElementById("cart");
     const overlay = document.getElementById("overlay");
 
-    if(cart) cart.classList.add("hidden");
-    if(overlay) overlay.classList.add("hidden");
+    if (panel) panel.classList.add("hidden");
+    if (overlay) overlay.classList.add("hidden");
+
 }
 
-/* CLEAR */
-window.clearCart = function(){
-    window.cart = [];
+/* -------------------------
+   WARENKORB LEEREN
+------------------------- */
+window.clearCart = function() {
+
+    cart = [];
     saveCart();
     updateCart();
+
 }
 
-/* REMOVE */
-window.removeItem = function(index){
-    window.cart.splice(index, 1);
+/* -------------------------
+   EIN PRODUKT ENTFERNEN
+------------------------- */
+window.removeItem = function(index) {
+
+    cart.splice(index, 1);
     saveCart();
     updateCart();
+
 }
 
-/* UPDATE UI */
-function updateCart(){
+/* -------------------------
+   WARENKORB AKTUALISIEREN
+------------------------- */
+function updateCart() {
 
     const count = document.getElementById("cart-count");
     const items = document.getElementById("cart-items");
     const total = document.getElementById("cart-total");
 
-    if(!count || !items || !total) return;
+    if (count) {
+        count.textContent = cart.length;
+    }
 
-    count.innerText = window.cart.length;
+    if (!items || !total) return;
 
     items.innerHTML = "";
 
     let sum = 0;
 
-    window.cart.forEach((item, i) => {
+    cart.forEach((item, index) => {
 
         sum += item.price;
 
         items.innerHTML += `
             <div>
-                ${item.name} - €${item.price.toFixed(2)}
-                <span onclick="removeItem(${i})" style="cursor:pointer;">❌</span>
+                <span>${item.name}</span>
+                <span>
+                    €${item.price.toFixed(2)}
+                    <span onclick="removeItem(${index})" style="cursor:pointer;margin-left:8px;">❌</span>
+                </span>
             </div>
         `;
 
     });
 
-    total.innerText = "Total: " + sum.toFixed(2) + "€";
+    total.textContent = "Total: €" + sum.toFixed(2);
 
 }
 
-updateCart();
-
-/* CHECKOUT */
-window.loadCheckout = function(){
+/* -------------------------
+   CHECKOUT LADEN
+------------------------- */
+window.loadCheckout = function() {
 
     const items = document.getElementById("checkout-items");
-    const totalEl = document.getElementById("checkout-total");
+    const total = document.getElementById("checkout-total");
 
-    if(!items || !totalEl) return;
-
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (!items || !total) return;
 
     items.innerHTML = "";
 
-    let total = 0;
+    let sum = 0;
 
     cart.forEach(item => {
 
-        total += item.price;
+        sum += item.price;
 
         items.innerHTML += `
             <div>
-                ${item.name}
+                <span>${item.name}</span>
                 <span>€${item.price.toFixed(2)}</span>
             </div>
         `;
 
     });
 
-    totalEl.innerText = "Total: " + total.toFixed(2) + "€";
+    total.textContent = "Total: €" + sum.toFixed(2);
+
 }
 
-/* AUTO INIT */
+/* -------------------------
+   START
+------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
+
     updateCart();
     loadCheckout();
+
 });
