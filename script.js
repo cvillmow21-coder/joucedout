@@ -143,7 +143,21 @@ window.loadCheckout = function() {
     total.textContent = "Total: €" + sum.toFixed(2);
 
 }
+let shipping = 4.99;
 
+let subtotal = 0;
+
+cart.forEach(item => {
+    subtotal += item.price;
+});
+
+const total = subtotal + shipping;
+
+document.getElementById("checkout-subtotal").innerText =
+"Zwischensumme: €" + subtotal.toFixed(2);
+
+document.getElementById("checkout-total").innerText =
+"Total: €" + total.toFixed(2);
 /* -------------------------
    START
 ------------------------- */
