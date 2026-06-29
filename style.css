@@ -23,7 +23,7 @@
 
 <h1>Checkout</h1>
 
-<p>Complete your order</p>
+<p>Bestellübersicht</p>
 
 </header>
 
@@ -31,49 +31,13 @@
 
 <div class="checkout-container">
 
-    <h2>Bestellübersicht</h2>
-
     <div id="checkout-items"></div>
 
-    <h3 id="checkout-total">Total: €0.00</h3>
+    <h2 id="checkout-total">Total: €0.00</h2>
 
-    <form class="checkout-form">
-
-        <label>Vor- und Nachname</label>
-        <input type="text" placeholder="Max Mustermann">
-
-        <label>E-Mail</label>
-        <input type="email" placeholder="name@email.de">
-
-        <label>Telefon</label>
-        <input type="tel" placeholder="+49...">
-
-        <label>Lieferadresse</label>
-        <textarea rows="4" placeholder="Straße, Hausnummer, PLZ, Ort"></textarea>
-
-        <label>Versandart</label>
-        <select>
-            <option>Standard Versand</option>
-            <option>Express Versand</option>
-        </select>
-
-        <label>Zahlungsmethode</label>
-        <select>
-            <option>Kreditkarte</option>
-            <option>PayPal</option>
-            <option>Banküberweisung</option>
-        </select>
-
-        <button
-            type="button"
-            class="checkout-btn"
-            onclick="placeOrder()">
-
-            Bestellung abschließen
-
-        </button>
-
-    </form>
+    <button class="checkout-btn" onclick="placeOrder()">
+        Bestellung abschließen
+    </button>
 
 </div>
 
