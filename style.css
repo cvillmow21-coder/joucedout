@@ -512,3 +512,44 @@ transform:translateY(-3px);
     transform:translateY(-3px);
 
 }
+.product-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.product-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-50%;
+    left:-50%;
+
+    width:200%;
+    height:200%;
+
+    background:radial-gradient(circle,rgba(255,70,210,.15),transparent 60%);
+
+    transform:rotate(25deg);
+
+    pointer-events:none;
+
+}
+
+.product-card:hover{
+
+    transform:translateY(-6px) scale(1.02);
+
+}
+
+.product-card span{
+
+    display:block;
+
+    margin-top:12px;
+
+}
