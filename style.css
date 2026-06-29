@@ -403,3 +403,104 @@ transform:translateY(-3px);
 }
 
 /* ===========================
+/* ===========================
+   CHECKOUT
+=========================== */
+
+.checkout-container{
+
+    max-width:750px;
+
+    margin:70px auto;
+
+    padding:40px;
+
+    background:#ffffff;
+
+    color:#222;
+
+    border-radius:24px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.checkout-container h2{
+
+    text-align:center;
+
+    font-size:34px;
+
+    color:#111;
+
+    margin-bottom:35px;
+
+}
+
+#checkout-items div{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 0;
+
+    border-bottom:1px solid #ececec;
+
+    font-size:18px;
+
+}
+
+#checkout-total{
+
+    margin-top:30px;
+
+    text-align:right;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    color:#111;
+
+}
+
+.checkout-btn{
+
+    width:100%;
+
+    margin-top:35px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    background:linear-gradient(90deg,#ff3ebf,#9d4dff);
+
+    box-shadow:0 10px 25px rgba(255,70,210,.35);
+
+    transition:.3s;
+
+}
+
+.checkout-btn:hover{
+
+    transform:translateY(-3px);
+
+}
