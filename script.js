@@ -272,3 +272,141 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 console.log("SCRIPT READY ✔");
+window.renderProducts = function(containerId = "products") {
+
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    window.products.forEach(p => {
+
+        container.innerHTML += `
+            <div class="product-card">
+
+                <h3>${p.name}</h3>
+
+                <span>€${p.price.toFixed(2)}</span>
+
+                <button onclick="addToCart('${p.name}', ${p.price})">
+                    In den Warenkorb
+                </button>
+
+            </div>
+        `;
+    });
+};
+window.addToCart = function(name, price) {
+
+    price = Number(price);
+
+    if (isNaN(price)) {
+        console.error("INVALID PRICE:", name, price);
+        return;
+    }
+
+    const existing = window.cart.find(i => i.name === name);
+
+    if (existing) {
+        existing.qty++;
+    } else {
+        window.cart.push({
+            name: name,
+            price: price,
+            qty: 1
+        });
+    }
+
+    saveCart();
+    updateCart();
+};
+window.removeItem = function(index) {
+
+    if (!window.cart[index]) return;
+
+    if (window.cart[index].qty > 1) {
+        window.cart[index].qty--;
+    } else {
+        window.cart.splice(index, 1);
+    }
+
+    saveCart();
+    updateCart();
+};
+window.clearCart = function() {
+
+    window.cart = [];
+
+    saveCart();
+    updateCart();
+};
+window.toggleCart = function() {
+
+    const cart = document.getElementById("cart");
+    const overlay = document.getElementById("overlay");
+
+    if (!cart || !overlay) return;
+
+    cart.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
+};
+window.closeCart = function() {
+
+    document.getElementById("cart")?.classList.add("hidden");
+    document.getElementById("overlay")?.classList.add("hidden");
+};
+function updateCart() {
+
+    const count = document.getElementById("cart-count");
+    const items = document.getElementById("cart-items");
+    const total = document.getElementById("cart-total");
+
+    if (!count || !items || !total) return;
+
+    items.innerHTML = "";
+
+    let totalPrice = 0;
+    let totalItems = 0;
+
+    window.cart.forEach((item, index) => {
+
+        const qty = item.qty || 1;
+        const price = item.price || 0;
+
+        totalItems += qty;
+        totalPrice += qty * price;
+
+        items.innerHTML += `
+            <div class="cart-item">
+
+                <div>
+                    <strong>${item.name}</strong><br>
+                    €${price.toFixed(2)}
+                </div>
+
+                <div>
+                    x${qty}
+                    <span onclick="removeItem(${index})"
+                        style="cursor:pointer;color:red;margin-left:10px;">
+                        ✖
+                    </span>
+                </div>
+
+            </div>
+        `;
+    });
+
+    count.innerText = totalItems;
+    total.innerText = "Total: €" + totalPrice.toFixed(2);
+}
+document.addEventListener("DOMContentLoaded", () => {
+    updateCart();
+
+    if (typeof loadCheckout === "function") {
+        loadCheckout();
+    }
+
+    if (typeof renderProducts === "function") {
+        renderProducts();
+    }
+});
