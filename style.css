@@ -1,49 +1,405 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(180deg,#14001f,#090014);
+color:white;
+min-height:100vh;
+overflow-x:hidden;
+}
 
-<title>Checkout | JuicedOut</title>
+/* Hintergrund */
 
-<link rel="stylesheet" href="style.css">
+.bg-logo{
+position:fixed;
+inset:0;
+background:url("5270.png") center center no-repeat;
+background-size:55%;
+opacity:.05;
+pointer-events:none;
+z-index:0;
+}
 
-</head>
+/* Header */
 
-<body>
+header{
+position:relative;
+z-index:2;
+text-align:center;
+padding:40px 20px;
+}
 
-<div class="bg-logo"></div>
+.logo{
+width:170px;
+margin-bottom:20px;
+}
 
-<header>
+header h1{
+font-size:64px;
+font-weight:800;
+}
 
-<a href="index.html">
-    <img src="5270.png" class="logo" alt="JuicedOut Logo">
-</a>
+header p{
+color:#ff70d4;
+margin-top:10px;
+font-size:20px;
+}
 
-<h1>Checkout</h1>
+/* Kategorien */
 
-<p>Bestellübersicht</p>
+.category-buttons{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:30px;
+flex-wrap:wrap;
+margin-top:60px;
+}
 
-</header>
+.category-btn{
+display:flex;
+justify-content:center;
+align-items:center;
 
-<main>
+width:230px;  
+height:75px;  
 
-<div class="checkout-container">
+text-decoration:none;  
 
-    <div id="checkout-items"></div>
+color:white;  
+font-size:22px;  
+font-weight:bold;  
 
-    <h2 id="checkout-total">Total: €0.00</h2>
+border-radius:18px;  
 
-    <button class="checkout-btn" onclick="placeOrder()">
-        Bestellung abschließen
-    </button>
+background:linear-gradient(90deg,#ff3ebf,#9d4dff);  
 
-</div>
+box-shadow:0 0 25px rgba(255,70,210,.45);  
 
-</main>
+transition:.25s;
 
-<script src="script.js"></script>
+}
 
-</body>
-</html>
+.category-btn:hover{
+transform:translateY(-5px);
+box-shadow:0 0 40px rgba(255,70,210,.8);
+}
+
+/* Produkte */
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+
+max-width:1100px;  
+
+margin:60px auto;  
+
+padding:20px;
+
+}
+
+.product-card{
+
+background:rgba(255,255,255,.05);  
+
+border:1px solid rgba(255,70,210,.3);  
+
+border-radius:18px;  
+
+padding:25px;  
+
+text-align:center;  
+
+transition:.3s;
+
+}
+
+.product-card:hover{
+
+transform:translateY(-5px);  
+
+box-shadow:0 0 25px rgba(255,70,210,.35);
+
+}
+
+.product-card h3{
+
+margin-bottom:10px;
+
+}
+
+.product-card p{
+
+opacity:.7;  
+
+margin-bottom:15px;
+
+}
+
+.product-card span{
+
+display:block;  
+
+margin-top:10px;  
+
+color:#ff70d4;  
+
+font-size:22px;  
+
+font-weight:bold;
+
+}
+
+.product-card button{
+
+width:100%;  
+
+margin-top:20px;  
+
+padding:15px;  
+
+border:none;  
+
+border-radius:14px;  
+
+cursor:pointer;  
+
+color:white;  
+
+font-size:18px;  
+
+font-weight:bold;  
+
+background:linear-gradient(90deg,#ff3ebf,#9d4dff);  
+
+transition:.25s;
+
+}
+
+.product-card button:hover{
+
+transform:translateY(-4px);
+
+}
+/* ===========================
+WARENKORB
+=========================== */
+
+.cart-icon{
+
+position:fixed;  
+
+top:20px;  
+right:20px;  
+
+width:55px;  
+height:55px;  
+
+display:flex;  
+justify-content:center;  
+align-items:center;  
+
+background:linear-gradient(90deg,#ff3ebf,#9d4dff);  
+
+color:white;  
+
+border-radius:50%;  
+
+cursor:pointer;  
+
+font-size:22px;  
+
+box-shadow:0 0 20px rgba(255,70,210,.45);  
+
+z-index:1001;
+
+}
+
+#cart-count{
+
+position:absolute;  
+
+top:-8px;  
+right:-8px;  
+
+width:24px;  
+height:24px;  
+
+display:flex;  
+justify-content:center;  
+align-items:center;  
+
+background:red;  
+
+color:white;  
+
+border-radius:50%;  
+
+font-size:13px;  
+
+font-weight:bold;
+
+}
+
+/* OVERLAY */
+
+.overlay{
+
+position:fixed;  
+
+inset:0;  
+
+background:rgba(0,0,0,.55);  
+
+z-index:999;
+
+}
+
+/* PANEL */
+
+.cart-panel{
+
+position:fixed;  
+
+top:0;  
+right:0;  
+
+width:360px;  
+max-width:90%;  
+
+height:100vh;  
+
+background:#14001f;  
+
+border-left:2px solid #ff3ebf;  
+
+display:flex;  
+flex-direction:column;  
+
+padding:25px;  
+
+z-index:1000;  
+
+box-shadow:-5px 0 25px rgba(0,0,0,.45);
+
+}
+
+/* VERSTECKEN */
+
+.hidden{
+
+display:none !important;
+
+}
+
+/* HEADER */
+
+.cart-header{
+
+display:flex;  
+
+justify-content:space-between;  
+
+align-items:center;  
+
+margin-bottom:20px;
+
+}
+
+.cart-header h3{
+
+font-size:28px;
+
+}
+
+.close-cart{
+
+cursor:pointer;  
+
+font-size:28px;
+
+}
+
+/* PRODUKTE */
+
+#cart-items{
+
+flex:1;  
+
+overflow-y:auto;
+
+}
+
+#cart-items div{
+
+display:flex;  
+
+justify-content:space-between;  
+
+align-items:center;  
+
+margin-bottom:14px;  
+
+padding-bottom:10px;  
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+/* FOOTER */
+
+.cart-footer{
+
+border-top:1px solid rgba(255,255,255,.15);  
+
+padding-top:15px;
+
+}
+
+#cart-total{
+
+font-size:20px;  
+
+font-weight:bold;  
+
+margin-bottom:15px;
+
+}
+
+.cart-footer button{
+
+width:100%;  
+
+padding:15px;  
+
+border:none;  
+
+border-radius:12px;  
+
+cursor:pointer;  
+
+font-size:17px;  
+
+font-weight:bold;  
+
+color:white;  
+
+background:linear-gradient(90deg,#ff3ebf,#9d4dff);  
+
+transition:.25s;
+
+}
+
+.cart-footer button:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* ===========================
