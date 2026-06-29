@@ -12,16 +12,50 @@ function saveCart() {
 /* -------------------------
    PRODUKT HINZUFÜGEN
 ------------------------- */
-window.addToCart = function(name, price) {
+window.placeOrder = function(){
 
-    cart.push({
-        name: name,
-        price: Number(price)
-    });
+    if(cart.length === 0){
+        alert("Dein Warenkorb ist leer.");
+        return;
+    }
 
-    saveCart();
-    updateCart();
+    document.body.innerHTML = `
 
+        <div style="
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            background:linear-gradient(180deg,#14001f,#090014);
+            color:white;
+            text-align:center;
+        ">
+
+            <h1 style="font-size:50px;">✔ Bestellung erfolgreich</h1>
+            <p style="margin-top:15px; opacity:0.8;">
+                Danke für deine Bestellung bei JuicedOut
+            </p>
+
+            <button onclick="location.href='index.html'" style="
+                margin-top:30px;
+                padding:15px 30px;
+                border:none;
+                border-radius:12px;
+                background:linear-gradient(90deg,#ff3ebf,#9d4dff);
+                color:white;
+                font-size:18px;
+                cursor:pointer;
+            ">
+                Zurück zum Shop
+            </button>
+
+        </div>
+
+    `;
+
+    cart = [];
+    localStorage.removeItem("cart");
 }
 
 /* -------------------------
