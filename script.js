@@ -1,3 +1,4 @@
+console.log("SCRIPT LÄUFT");
 window.placeOrder = function(){
 
     if(cart.length === 0){
