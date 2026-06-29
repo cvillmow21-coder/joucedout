@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | JuicedOut</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Checkout | JuicedOut</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -17,23 +14,29 @@
 
 <header>
 
-<a href="index.html">
-<img src="5270.png" class="logo" alt="JuicedOut Logo">
-</a>
+    <a href="index.html">
+        <img src="5270.png" class="logo" alt="JuicedOut Logo">
+    </a>
 
-<h1>Checkout</h1>
+    <h1>Checkout</h1>
 
-<p>Review your order</p>
+    <p>Bestellübersicht</p>
 
 </header>
 
-<main class="checkout-container">
+<main>
 
-    <div id="checkout-items"></div>
+    <div class="checkout-container">
 
-    <h2 id="checkout-total">Total: 0€</h2>
+        <div id="checkout-items"></div>
 
-    <button onclick="placeOrder()">Jetzt bestellen</button>
+        <h2 id="checkout-total">Total: €0.00</h2>
+
+        <button onclick="placeOrder()">
+            Bestellung abschließen
+        </button>
+
+    </div>
 
 </main>
 
