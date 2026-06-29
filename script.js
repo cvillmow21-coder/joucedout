@@ -1,23 +1,126 @@
+
+console.log("SCRIPT LOADED OK");
+
+// =====================
+// CART STATE
+// =====================
+window.cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// =====================
+// SAVE CART
+// =====================
+function saveCart(){
+    localStorage.setItem("cart", JSON.stringify(window.cart));
+}
+
+// =====================
+// ADD TO CART
+// =====================
+window.addToCart = function(name, price){
+
+    let existing = window.cart.find(item => item.name === name);
+
+    if(existing){
+        existing.qty += 1;
+    } else {
+        window.cart.push({
+            name: name,
+            price: Number(price),
+            qty: 1
+        });
+    }
+
+    saveCart();
+    updateCart();
+};
+
+// =====================
+// REMOVE ITEM
+// =====================
+window.removeItem = function(index){
+
+    if(window.cart[index].qty > 1){
+        window.cart[index].qty -= 1;
+    } else {
+        window.cart.splice(index, 1);
+    }
+
+    saveCart();
+    updateCart();
+};
+
+// =====================
+// TOGGLE CART
+// =====================
+window.toggleCart = function(){
+
+    const cart = document.getElementById("cart");
+    const overlay = document.getElementById("overlay");
+
+    if(!cart || !overlay) return;
+
+    cart.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
+};
+
+// =====================
+// UPDATE CART UI
+// =====================
+function updateCart(){
+
+    const count = document.getElementById("cart-count");
+    const items = document.getElementById("cart-items");
+    const total = document.getElementById("cart-total");
+
+    if(!count || !items || !total) return;
+
+    items.innerHTML = "";
+
+    let sum = 0;
+    let totalQty = 0;
+
+    window.cart.forEach((item, i) => {
+
+        let itemTotal = item.price * item.qty;
+        sum += itemTotal;
+        totalQty += item.qty;
+
+        items.innerHTML += `
+            <div>
+                <span>${item.name} x${item.qty}</span>
+
+                <div>
+                    <button onclick="removeItem(${i})">−</button>
+                    <span>${item.qty}</span>
+                    <button onclick="addToCart('${item.name}', ${item.price})">+</button>
+                </div>
+
+                <span>€${itemTotal.toFixed(2)}</span>
+            </div>
+        `;
+    });
+
+    count.innerText = totalQty;
+    total.innerText = "Total: €" + sum.toFixed(2);
+}
+
+// =====================
+// PLACE ORDER (DEIN CHECKOUT)
+// =====================
 window.placeOrder = function(){
 
-    if(cart.length === 0){
+    if(window.cart.length === 0){
         alert("Dein Warenkorb ist leer.");
         return;
     }
 
-    // Bestellnummer
     const orderId = "JUICE-" + Math.floor(10000 + Math.random() * 90000);
+    const date = new Date().toLocaleString("de-DE");
 
-    // Datum
-    const now = new Date();
-    const date = now.toLocaleString("de-DE");
-
-    // Warenkorb leeren
-    cart = [];
+    window.cart = [];
     localStorage.removeItem("cart");
     updateCart();
 
-    // Overlay
     const overlay = document.createElement("div");
 
     overlay.innerHTML = `
@@ -30,99 +133,16 @@ window.placeOrder = function(){
             align-items:center;
             flex-direction:column;
             color:white;
-            text-align:center;
             z-index:9999;
-            animation:fadeIn .4s ease;
+            text-align:center;
         ">
 
-            <div style="
-                background:rgba(255,255,255,0.06);
-                padding:30px;
-                border-radius:18px;
-                box-shadow:0 0 30px rgba(255,70,210,.25);
-                max-width:400px;
-            ">
+            <h1>✔ Bestellung erfolgreich</h1>
 
-                <h1 style="font-size:40px;margin-bottom:10px;">
-                    ✔ Bestellung erfolgreich
-                </h1>
+            <p>Bestellnummer: <b>${orderId}</b></p>
+            <p>${date}</p>
 
-                <p style="opacity:0.8;margin-bottom:15px;">
-                    Danke für deine Bestellung bei JuicedOut
-                </p>
-
-                <p style="font-size:14px;opacity:0.7;">
-                    Bestellnummer: <b>${orderId}</b><br>
-                    Datum: ${date}
-                </p>
-
-                <button id="backToShop" style="
-                    margin-top:25px;
-                    padding:12px 24px;
-                    border:none;
-                    border-radius:12px;
-                    background:linear-gradient(90deg,#ff3ebf,#9d4dff);
-                    color:white;
-                    font-size:16px;
-                    cursor:pointer;
-                    box-shadow:0 0 20px rgba(255,70,210,.35);
-                ">
-                    Zurück zum Shop
-                </button>
-
-            </div>
-
-        </div>
-    `;
-
-    document.body.appendChild(overlay);
-
-    document.getElementById("backToShop").onclick = function(){
-        location.href = "index.html";
-    };
-};
-    // Warenkorb speichern/clearen
-    cart = [];
-    localStorage.removeItem("cart");
-    updateCart();
-
-    // Success Overlay erstellen
-    const overlay = document.createElement("div");
-
-    overlay.innerHTML = `
-        <div style="
-            position:fixed;
-            inset:0;
-            background:linear-gradient(180deg,#14001f,#090014);
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            flex-direction:column;
-            color:white;
-            text-align:center;
-            z-index:9999;
-        ">
-
-            <h1 style="font-size:50px;margin-bottom:10px;">
-                ✔ Bestellung erfolgreich
-            </h1>
-
-            <p style="opacity:0.8;font-size:18px;">
-                Danke für deine Bestellung bei JuicedOut
-            </p>
-
-            <button id="backToShop" style="
-                margin-top:30px;
-                padding:15px 30px;
-                border:none;
-                border-radius:12px;
-                background:linear-gradient(90deg,#ff3ebf,#9d4dff);
-                color:white;
-                font-size:18px;
-                cursor:pointer;
-                box-shadow:0 0 25px rgba(255,70,210,.45);
-                transition:.25s;
-            ">
+            <button id="backToShop">
                 Zurück zum Shop
             </button>
 
@@ -135,3 +155,10 @@ window.placeOrder = function(){
         location.href = "index.html";
     };
 };
+
+// =====================
+// INIT
+// =====================
+document.addEventListener("DOMContentLoaded", () => {
+    updateCart();
+});
