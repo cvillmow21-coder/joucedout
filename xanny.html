@@ -13,20 +13,17 @@
 
 <body>
 
-<!-- CART -->
+<!-- CART ICON -->
 <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
 </div>
 
-<div class="cart-icon" onclick="toggleCart()">
-    🛒 <span id="cart-count">0</span>
-</div>
-
+<!-- CART PANEL -->
 <div id="cart" class="cart-panel hidden">
 
     <div class="cart-header">
         <h3>Warenkorb</h3>
-        <span onclick="toggleCart()" class="close-cart">✖</span>
+        <span class="close-cart" onclick="closeCart()">✖</span>
     </div>
 
     <div id="cart-items"></div>
@@ -38,29 +35,15 @@
 
 </div>
 
-<div id="cart" class="cart hidden">
-
-    <h3>Warenkorb</h3>
-
-    <div id="cart-items"></div>
-
-    <p id="cart-total">Total: 0€</p>
-
-    <button onclick="clearCart()">Leeren</button>
-
-</div>
-
-<!-- HIER MUSS DER OVERLAY HIN -->
+<!-- OVERLAY -->
 <div id="overlay" class="overlay hidden" onclick="closeCart()"></div>
 
-<!-- BACKGROUND -->
 <div class="bg-logo"></div>
 
-<!-- HEADER -->
 <header>
 
 <a href="index.html">
-<img src="5270.png" class="logo" alt="JuicedOut Logo">
+    <img src="5270.png" class="logo" alt="JuicedOut Logo">
 </a>
 
 <h1>XannyJuice</h1>
@@ -69,10 +52,9 @@
 
 </header>
 
-<!-- PRODUCTS -->
 <main>
 
-<section class="products active">
+<div class="products active">
 
     <div class="product-card">
 
@@ -80,7 +62,7 @@
         <p>10ml</p>
         <span>24.99 €</span>
 
-        <button onclick="addToCart('Xanny Chill', 24.99)">
+        <button onclick="addToCart('Xanny Chill',24.99)">
             In den Warenkorb
         </button>
 
@@ -92,13 +74,13 @@
         <p>20ml</p>
         <span>34.99 €</span>
 
-        <button onclick="addToCart('Xanny Max', 34.99)">
+        <button onclick="addToCart('Xanny Max',34.99)">
             In den Warenkorb
         </button>
 
     </div>
 
-</section>
+</div>
 
 </main>
 
