@@ -181,3 +181,15 @@ window.placeOrder = function(){
 
     window.location.href = "index.html";
 }
+window.applyDiscount = function(){
+
+    const code = document.getElementById("discount-code").value;
+
+    if(code === "JUICED10"){
+        alert("10% Rabatt aktiviert!");
+
+    } else {
+        alert("Ungültiger Code");
+    }
+
+}
