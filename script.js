@@ -153,3 +153,17 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCheckout();
 
 });
+window.placeOrder = function(){
+
+    if(cart.length === 0){
+        alert("Dein Warenkorb ist leer.");
+        return;
+    }
+
+    alert("Vielen Dank für deine Bestellung! 🎉");
+
+    cart = [];
+    localStorage.removeItem("cart");
+
+    window.location.href = "index.html";
+}
