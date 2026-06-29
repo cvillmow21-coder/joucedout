@@ -493,9 +493,17 @@ transform:translateY(-3px);
 
     background:linear-gradient(90deg,#ff3ebf,#9d4dff);
 
-    box-shadow:0 10px 25px rgba(255,70,210,.35);
+    box-shadow:0 0 25px rgba(255,70,210,.45);
 
     transition:.3s;
+
+}
+
+.checkout-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 0 40px rgba(255,70,210,.8);
 
 }
 
