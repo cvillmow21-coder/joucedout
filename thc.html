@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
 
 <meta charset="UTF-8">
@@ -13,49 +14,56 @@
 
 <body>
 
-<!-- CART ICON -->
+<!-- Hintergrund -->
+<div class="bg-logo"></div>
+
+<!-- Warenkorb Icon -->
 <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
 </div>
 
-
-<!-- CART PANEL -->
+<!-- Warenkorb -->
 <div id="cart" class="cart-panel hidden">
 
     <div class="cart-header">
+
         <h3>Warenkorb</h3>
-        <span onclick="closeCart()" class="close-cart">✖</span>
+
+        <span class="close-cart" onclick="closeCart()">
+            ✖
+        </span>
+
     </div>
 
     <div id="cart-items"></div>
 
-<div class="cart-footer">
+    <div class="cart-footer">
 
-    <p id="cart-total">Total: €0.00</p>
+        <p id="cart-total">
+            Total: €0.00
+        </p>
 
-    <button onclick="location.href='checkout.html'">
-        Zum Checkout
-    </button>
+        <button onclick="location.href='checkout.html'">
+            Zum Checkout
+        </button>
 
-    <button onclick="clearCart()">
-        Warenkorb leeren
-    </button>
+        <button onclick="clearCart()">
+            Warenkorb leeren
+        </button>
+
+    </div>
 
 </div>
 
-</div>
-
-<!-- OVERLAY (MUSS AUSSERHALB SEIN) -->
+<!-- Overlay -->
 <div id="overlay" class="overlay hidden" onclick="closeCart()"></div>
 
-<!-- BACKGROUND -->
-<div class="bg-logo"></div>
+<!-- Header -->
 
-<!-- HEADER -->
 <header>
 
 <a href="index.html">
-<img src="5270.png" class="logo" alt="JuicedOut Logo">
+    <img src="5270.png" class="logo" alt="JuicedOut Logo">
 </a>
 
 <h1>THCJuice</h1>
@@ -64,15 +72,17 @@
 
 </header>
 
-<!-- PRODUCTS -->
+<!-- Produkte -->
+
 <main>
 
-<div class="products active">
-
-    <div class="product-card">
+<div class="products">
+        <div class="product-card">
 
         <h3>THC Juice Classic</h3>
+
         <p>10ml</p>
+
         <span>19.99 €</span>
 
         <button onclick="addToCart('THC Juice Classic', 19.99)">
@@ -84,7 +94,9 @@
     <div class="product-card">
 
         <h3>THC Juice Premium</h3>
+
         <p>20ml</p>
+
         <span>29.99 €</span>
 
         <button onclick="addToCart('THC Juice Premium', 29.99)">
@@ -97,6 +109,7 @@
 
 </main>
 
+<!-- JavaScript -->
 <script src="script.js"></script>
 
 </body>
