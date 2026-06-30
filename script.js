@@ -162,6 +162,9 @@ function updateCart() {
 // =========================
 // CHECKOUT
 // =========================
+// =========================
+// CHECKOUT
+// =========================
 
 window.loadCheckout = function() {
 
@@ -191,16 +194,87 @@ window.loadCheckout = function() {
                 padding-bottom:10px;
                 border-bottom:1px solid rgba(255,255,255,.08);
             ">
-
                 <span>${item.name} × ${qty}</span>
-
                 <span>€${lineTotal.toFixed(2)}</span>
-
             </div>
         `;
     });
 
     total.innerText = "Total: €" + sum.toFixed(2);
+};
+
+
+// =========================
+// PLACE ORDER
+// =========================
+
+window.placeOrder = function () {
+
+    if (window.cart.length === 0) {
+        alert("Dein Warenkorb ist leer.");
+        return;
+    }
+
+    const orderId = "JUICE-" + Math.floor(10000 + Math.random() * 90000);
+    const date = new Date().toLocaleString("de-DE");
+
+    window.cart = [];
+    saveCart();
+    updateCart();
+
+    const overlay = document.createElement("div");
+
+    overlay.innerHTML = `
+        <div style="
+            position:fixed;
+            inset:0;
+            background:linear-gradient(180deg,#14001f,#090014);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            z-index:9999;
+        ">
+            <div style="
+                background:rgba(255,255,255,.06);
+                padding:35px;
+                border-radius:18px;
+                text-align:center;
+                color:white;
+                max-width:420px;
+                width:90%;
+            ">
+
+                <h1>✔ Bestellung erfolgreich</h1>
+
+                <p>Bestellnummer: <b>${orderId}</b></p>
+                <p>${date}</p>
+
+                <button onclick="location.href='index.html'"
+                    style="margin-top:20px;padding:12px 24px;">
+                    Zurück zum Shop
+                </button>
+
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+};
+
+
+// =========================
+// INIT (nur EINMAL!)
+// =========================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    updateCart();
+
+    if (typeof loadCheckout === "function") {
+        loadCheckout();
+    }
+
+});
 
 // =========================
 // PLACE ORDER
