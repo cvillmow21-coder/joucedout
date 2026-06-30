@@ -4,7 +4,7 @@ console.log("JUICEDOUT SHOP LOADED ✔");
 // CART STATE
 // =========================
 
-window.cart = JSON.parse(localStorage.getItem("cart")) || [];
+window.cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
 // =========================
 // SAVE CART
@@ -33,8 +33,8 @@ window.addToCart = function(name, price) {
         existing.qty++;
     } else {
         window.cart.push({
-            name: name,
-            price: price,
+            name,
+            price,
             qty: 1
         });
     }
@@ -42,7 +42,7 @@ window.addToCart = function(name, price) {
     saveCart();
     updateCart();
 
-    console.log("Produkt hinzugefügt:", name);
+    console.log("Added:", name);
 };
 
 // =========================
@@ -69,10 +69,7 @@ window.removeItem = function(index) {
 
 window.clearCart = function() {
 
-    if (!confirm("Warenkorb wirklich leeren?")) return;
-
     window.cart = [];
-
     saveCart();
     updateCart();
 };
@@ -83,12 +80,12 @@ window.clearCart = function() {
 
 window.toggleCart = function() {
 
-    const cartPanel = document.getElementById("cart");
+    const cart = document.getElementById("cart");
     const overlay = document.getElementById("overlay");
 
-    if (!cartPanel || !overlay) return;
+    if (!cart || !overlay) return;
 
-    cartPanel.classList.toggle("hidden");
+    cart.classList.toggle("hidden");
     overlay.classList.toggle("hidden");
 };
 
@@ -101,168 +98,3 @@ window.closeCart = function() {
     document.getElementById("cart")?.classList.add("hidden");
     document.getElementById("overlay")?.classList.add("hidden");
 };
-// =========================
-// UPDATE CART
-// =========================
-
-function updateCart() {
-
-    const count = document.getElementById("cart-count");
-    const items = document.getElementById("cart-items");
-    const total = document.getElementById("cart-total");
-
-    if (!count || !items || !total) return;
-
-    items.innerHTML = "";
-
-    let totalItems = 0;
-    let totalPrice = 0;
-
-    window.cart.forEach((item, index) => {
-
-        const qty = Number(item.qty) || 1;
-        const price = Number(item.price) || 0;
-
-        totalItems += qty;
-        totalPrice += qty * price;
-
-        items.innerHTML += `
-            <div class="cart-item">
-
-                <div class="cart-info">
-                    <strong>${item.name}</strong><br>
-                    €${price.toFixed(2)}
-                </div>
-
-                <div class="cart-actions">
-
-                    <span>x${qty}</span>
-
-                    <span
-                        onclick="removeItem(${index})"
-                        style="
-                            cursor:pointer;
-                            color:#ff4d8d;
-                            margin-left:12px;
-                            font-weight:bold;
-                        ">
-                        ✖
-                    </span>
-
-                </div>
-
-            </div>
-        `;
-    });
-
-    count.innerText = totalItems;
-    total.innerText = "Total: €" + totalPrice.toFixed(2);
-}
-
-
-// =========================
-// CHECKOUT
-// =========================
-
-window.loadCheckout = function () {
-
-    const items = document.getElementById("checkout-items");
-    const total = document.getElementById("checkout-total");
-
-    if (!items || !total) return;
-
-    items.innerHTML = "";
-
-    let sum = 0;
-
-    window.cart.forEach(item => {
-
-        const qty = Number(item.qty) || 1;
-        const price = Number(item.price) || 0;
-
-        const lineTotal = qty * price;
-        sum += lineTotal;
-
-        items.innerHTML += `
-            <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
-                <span>${item.name} × ${qty}</span>
-                <span>€${lineTotal.toFixed(2)}</span>
-            </div>
-        `;
-    });
-
-    total.innerText = "Total: €" + sum.toFixed(2);
-};
-
-
-// =========================
-// PLACE ORDER
-// =========================
-
-window.placeOrder = function () {
-
-    if (window.cart.length === 0) {
-        alert("Dein Warenkorb ist leer.");
-        return;
-    }
-
-    const orderId = "JUICE-" + Math.floor(10000 + Math.random() * 90000);
-    const date = new Date().toLocaleString("de-DE");
-
-    window.cart = [];
-    saveCart();
-    updateCart();
-
-    const overlay = document.createElement("div");
-
-    overlay.innerHTML = `
-        <div style="
-            position:fixed;
-            inset:0;
-            background:linear-gradient(180deg,#14001f,#090014);
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            z-index:9999;
-        ">
-            <div style="
-                background:rgba(255,255,255,.06);
-                padding:35px;
-                border-radius:18px;
-                text-align:center;
-                color:white;
-                max-width:420px;
-                width:90%;
-            ">
-
-                <h1>✔ Bestellung erfolgreich</h1>
-
-                <p>Bestellnummer: <b>${orderId}</b></p>
-                <p>${date}</p>
-
-                <button onclick="location.href='index.html'"
-                    style="margin-top:20px;padding:12px 24px;">
-                    Zurück zum Shop
-                </button>
-
-            </div>
-        </div>
-    `;
-
-    document.body.appendChild(overlay);
-};
-
-
-// =========================
-// INIT (ONLY ONCE)
-// =========================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    updateCart();
-
-    if (typeof loadCheckout === "function") {
-        loadCheckout();
-    }
-
-});
