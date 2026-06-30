@@ -610,3 +610,35 @@ transform:translateY(-3px);
         transform:scale(1);
     }
 }
+.checkout-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-bottom:35px;
+}
+
+.checkout-form input{
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:rgba(255,255,255,.08);
+    color:white;
+    font-size:16px;
+}
+
+.checkout-form input::placeholder{
+    color:rgba(255,255,255,.6);
+}
+
+.checkout-form label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:17px;
+    cursor:pointer;
+}
+
+.checkout-form h2{
+    margin-top:10px;
+    margin-bottom:5px;
+}
