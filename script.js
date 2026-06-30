@@ -159,14 +159,12 @@ function updateCart() {
     total.innerText = "Total: €" + totalPrice.toFixed(2);
 }
 
-// =========================
-// CHECKOUT
-// =========================
+
 // =========================
 // CHECKOUT
 // =========================
 
-window.loadCheckout = function() {
+window.loadCheckout = function () {
 
     const items = document.getElementById("checkout-items");
     const total = document.getElementById("checkout-total");
@@ -183,17 +181,10 @@ window.loadCheckout = function() {
         const price = Number(item.price) || 0;
 
         const lineTotal = qty * price;
-
         sum += lineTotal;
 
         items.innerHTML += `
-            <div style="
-                display:flex;
-                justify-content:space-between;
-                margin-bottom:12px;
-                padding-bottom:10px;
-                border-bottom:1px solid rgba(255,255,255,.08);
-            ">
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
                 <span>${item.name} × ${qty}</span>
                 <span>€${lineTotal.toFixed(2)}</span>
             </div>
@@ -263,108 +254,10 @@ window.placeOrder = function () {
 
 
 // =========================
-// INIT (nur EINMAL!)
+// INIT (ONLY ONCE)
 // =========================
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    updateCart();
-
-    if (typeof loadCheckout === "function") {
-        loadCheckout();
-    }
-
-});
-
-// =========================
-// PLACE ORDER
-// =========================
-
-window.placeOrder = function () {
-
-    if (window.cart.length === 0) {
-        alert("Dein Warenkorb ist leer.");
-        return;
-    }
-
-    const orderId = "JUICE-" + Math.floor(10000 + Math.random() * 90000);
-    const date = new Date().toLocaleString("de-DE");
-
-    // HIER kommt später PayPal bzw. Backend/Telegram hin
-
-    // Warenkorb leeren
-    window.cart = [];
-    saveCart();
-    updateCart();
-
-    const overlay = document.createElement("div");
-
-    overlay.innerHTML = `
-        <div style="
-            position:fixed;
-            inset:0;
-            background:linear-gradient(180deg,#14001f,#090014);
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            z-index:9999;
-        ">
-
-            <div style="
-                background:rgba(255,255,255,.06);
-                padding:35px;
-                border-radius:18px;
-                box-shadow:0 0 30px rgba(255,70,210,.35);
-                text-align:center;
-                color:white;
-                max-width:420px;
-                width:90%;
-            ">
-
-                <h1>✔ Bestellung erfolgreich</h1>
-
-                <p style="margin-top:15px;">
-                    Danke für deine Bestellung bei JuicedOut.
-                </p>
-
-                <p style="margin-top:20px;font-size:14px;opacity:.8;">
-                    Bestellnummer:<br>
-                    <strong>${orderId}</strong>
-                </p>
-
-                <p style="font-size:14px;opacity:.8;">
-                    ${date}
-                </p>
-
-                <button
-                    onclick="location.href='index.html'"
-                    style="
-                        margin-top:25px;
-                        padding:14px 26px;
-                        border:none;
-                        border-radius:12px;
-                        cursor:pointer;
-                        background:linear-gradient(90deg,#ff3ebf,#9d4dff);
-                        color:white;
-                        font-size:16px;
-                    ">
-                    Zurück zum Shop
-                </button>
-
-            </div>
-
-        </div>
-    `;
-
-    document.body.appendChild(overlay);
-};
-    // =========================
-// INIT
-// =========================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    console.log("DOM READY ✔");
 
     updateCart();
 
