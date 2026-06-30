@@ -206,14 +206,33 @@ window.loadCheckout = function() {
 
 window.placeOrder = function() {
 
-    if (window.cart.length === 0) {
-        alert("Dein Warenkorb ist leer.");
-        return;
-    }
+   const telegramToken = "DEIN_BOT_TOKEN";
+const chatId = "8966176486";
 
-    const orderId = "JUICE-" + Math.floor(10000 + Math.random() * 90000);
-    const date = new Date().toLocaleString("de-DE");
+const total = window.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
+fetch(`https://api.telegram.org/bot${8863543243:AAHbY9ijXyTk5Scb7fObWVwgejNp6P9d7t8}/sendMessage`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        chat_id: chatId,
+        text:
+`🛒 Neue Bestellung!
+
+🆔 Bestellnummer: ${orderId}
+📅 Datum: ${date}
+
+📦 Produkte:
+${window.cart.map(item => `• ${item.name} × ${item.qty} (€${item.price.toFixed(2)})`).join("\n")}
+
+💰 Gesamt: €${total.toFixed(2)}`
+    })
+})
+.then(response => response.json())
+.then(data => console.log("Telegram:", data))
+.catch(error => console.error("Telegram Fehler:", error));
     window.cart = [];
     saveCart();
     updateCart();
