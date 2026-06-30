@@ -1,96 +1,111 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | JuicedOut</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>Checkout | JuicedOut</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- PayPal SDK (Client ID später ersetzen) -->
+<script src="https://www.paypal.com/sdk/js?client-id=DEINE_CLIENT_ID&currency=EUR"></script>
+
 </head>
 
 <body>
 
+<!-- BACKGROUND -->
 <div class="bg-logo"></div>
 
 <header>
-
     <a href="index.html">
         <img src="5270.png" class="logo" alt="JuicedOut Logo">
     </a>
-
     <h1>Checkout</h1>
-<div class="checkout-form">
-
-    <h2>Lieferadresse</h2>
-
-    <input type="text" id="firstname" placeholder="Vorname" required>
-
-    <input type="text" id="lastname" placeholder="Nachname" required>
-
-    <input type="email" id="email" placeholder="E-Mail" required>
-
-    <input type="tel" id="phone" placeholder="Telefon (optional)">
-
-    <input type="text" id="street" placeholder="Straße" required>
-
-    <input type="text" id="house" placeholder="Hausnummer" required>
-
-    <input type="text" id="zip" placeholder="PLZ" required>
-
-    <input type="text" id="city" placeholder="Ort" required>
-
-    <h2>Zahlungsart</h2>
-
-    <label>
-        <input type="radio" name="payment" value="paypal" checked>
-        PayPal
-    </label>
-
-    <label>
-        <input type="radio" name="payment" value="bank">
-        Vorkasse
-    </label>
-
-</div>
-    <p>Bestellübersicht</p>
-
+    <p>Bestellung abschließen</p>
 </header>
 
-<main>
-<div class="checkout-container">
+<main style="max-width:800px;margin:0 auto;padding:20px;color:white;">
 
-    <h2>Deine Bestellung</h2>
+    <!-- WARENKORB ANZEIGE -->
+    <section style="
+        background:rgba(255,255,255,0.05);
+        padding:20px;
+        border-radius:12px;
+        margin-bottom:20px;
+    ">
 
-    <div id="checkout-items"></div>
+        <h2>Dein Warenkorb</h2>
 
-    <div class="checkout-summary">
+        <div id="checkout-items"></div>
 
-        <p id="checkout-subtotal">Zwischensumme: €0.00</p>
-        <p>Versand: €4.99</p>
-<div class="discount-box">
+        <hr style="margin:15px 0;opacity:0.2;">
 
-    <input type="text" id="discount-code" placeholder="Gutscheincode">
+        <h3 id="checkout-total">Total: €0.00</h3>
 
-    <button onclick="applyDiscount()">Einlösen</button>
+    </section>
 
-</div>
-        <hr>
+    <!-- PAYPAL BUTTON -->
+    <section style="
+        background:rgba(255,255,255,0.05);
+        padding:20px;
+        border-radius:12px;
+    ">
 
-        <h2 id="checkout-total">Total: €0.00</h2>
+        <h2>Zahlung</h2>
 
-    </div>
+        <div id="paypal-button-container"></div>
 
-    <button class="checkout-btn" onclick="placeOrder()">
-        Bestellung abschließen
-    </button>
+        <p style="opacity:0.6;font-size:14px;margin-top:10px;">
+            Sichere Zahlung via PayPal
+        </p>
 
-</div>
-
-    </div>
+    </section>
 
 </main>
 
+<!-- SCRIPT -->
 <script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof loadCheckout === "function") {
+        loadCheckout();
+    }
+
+    // PAYPAL BUTTON
+    if (window.paypal) {
+
+        paypal.Buttons({
+
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: window.cart
+                                .reduce((s,i)=>s+i.price*i.qty,0)
+                                .toFixed(2)
+                        }
+                    }]
+                });
+            },
+
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+
+                    if (typeof placeOrder === "function") {
+                        placeOrder();
+                    }
+
+                });
+            }
+
+        }).render('#paypal-button-container');
+
+    }
+});
+</script>
 
 </body>
 </html>
