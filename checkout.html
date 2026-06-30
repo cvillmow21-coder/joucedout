@@ -68,15 +68,19 @@
 
 <!-- SCRIPT -->
 <script src="script.js"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
     if (typeof loadCheckout === "function") {
         loadCheckout();
     }
 
-    // PAYPAL BUTTON
-    if (window.paypal) {
+    function initPayPal() {
+
+        if (!window.paypal) {
+            setTimeout(initPayPal, 300);
+            return;
+        }
 
         paypal.Buttons({
 
@@ -103,10 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
         }).render('#paypal-button-container');
-
     }
+
+    initPayPal();
+
 });
 </script>
-
-</body>
-</html>
