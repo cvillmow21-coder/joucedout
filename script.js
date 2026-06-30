@@ -1,13 +1,13 @@
-console.log("JUICEDOUT SHOP LOADED ✔");
+console.log("JUICEDOUT PRO SYSTEM ✔");
 
 // =========================
 // CART STATE
 // =========================
 
-window.cart = JSON.parse(localStorage.getItem("cart") || "[]");
+window.cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // =========================
-// SAVE CART
+// SAVE
 // =========================
 
 function saveCart() {
@@ -22,25 +22,107 @@ window.addToCart = function(name, price) {
 
     price = Number(price);
 
-    if (isNaN(price)) {
-        console.error("Ungültiger Preis:", price);
-        return;
-    }
+    if (!name || isNaN(price)) return;
 
-    const existing = window.cart.find(item => item.name === name);
+    const item = window.cart.find(i => i.name === name);
 
-    if (existing) {
-        existing.qty++;
+    if (item) {
+        item.qty++;
     } else {
-        window.cart.push({
-            name,
-            price,
-            qty: 1
-        });
+        window.cart.push({ name, price, qty: 1 });
     }
 
     saveCart();
     updateCart();
+};
+
+// =========================
+// REMOVE
+// =========================
+
+window.removeItem = function(index) {
+    if (!window.cart[index]) return;
+
+    window.cart[index].qty--;
+
+    if (window.cart[index].qty <= 0) {
+        window.cart.splice(index, 1);
+    }
+
+    saveCart();
+    updateCart();
+};
+
+// =========================
+// CLEAR
+// =========================
+
+window.clearCart = function() {
+    window.cart = [];
+    saveCart();
+    updateCart();
+};
+
+// =========================
+// CART UI
+// =========================
+
+window.toggleCart = function() {
+    document.getElementById("cart")?.classList.toggle("hidden");
+    document.getElementById("overlay")?.classList.toggle("hidden");
+};
+
+window.closeCart = function() {
+    document.getElementById("cart")?.classList.add("hidden");
+    document.getElementById("overlay")?.classList.add("hidden");
+};
+
+// =========================
+// UPDATE CART
+// =========================
+
+function updateCart() {
+
+    const count = document.getElementById("cart-count");
+    const items = document.getElementById("cart-items");
+    const total = document.getElementById("cart-total");
+
+    if (!count || !items || !total) return;
+
+    items.innerHTML = "";
+
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    window.cart.forEach((item, i) => {
+
+        totalItems += item.qty;
+        totalPrice += item.qty * item.price;
+
+        items.innerHTML += `
+            <div class="cart-item">
+                <div>
+                    <b>${item.name}</b><br>
+                    €${item.price.toFixed(2)}
+                </div>
+
+                <div>
+                    x${item.qty}
+                    <span onclick="removeItem(${i})"
+                        style="cursor:pointer;color:red;margin-left:10px;">
+                        ✖
+                    </span>
+                </div>
+            </div>
+        `;
+    });
+
+    count.innerText = totalItems;
+    total.innerText = "Total: €" + totalPrice.toFixed(2);
+}
+
+// INIT
+document.addEventListener("DOMContentLoaded", updateCart);
 
     console.log("Added:", name);
 };
