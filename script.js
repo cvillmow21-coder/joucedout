@@ -1,32 +1,4 @@
-console.log("PRO SHOP LOADED ✔");
-
-// =========================
-// PRODUCTS DATABASE
-// =========================
-
-window.products = [
-    {
-        id: 1,
-        name: "THC Juice Classic",
-        price: 19.99
-    },
-    {
-        id: 2,
-        name: "THC Juice Premium",
-        price: 29.99
-    },
-    {
-        id: 3,
-        name: "Kratom Green",
-        price: 17.99
-    },
-    {
-        id: 4,
-        name: "Kratom Gold",
-        price: 27.99
-    }
-];
-console.log("SCRIPT LOADED");
+console.log("JUICEDOUT SHOP LOADED ✔");
 
 // =========================
 // CART STATE
@@ -50,6 +22,11 @@ window.addToCart = function(name, price) {
 
     price = Number(price);
 
+    if (isNaN(price)) {
+        console.error("Ungültiger Preis:", price);
+        return;
+    }
+
     const existing = window.cart.find(item => item.name === name);
 
     if (existing) {
@@ -64,6 +41,8 @@ window.addToCart = function(name, price) {
 
     saveCart();
     updateCart();
+
+    console.log("Produkt hinzugefügt:", name);
 };
 
 // =========================
@@ -90,7 +69,10 @@ window.removeItem = function(index) {
 
 window.clearCart = function() {
 
+    if (!confirm("Warenkorb wirklich leeren?")) return;
+
     window.cart = [];
+
     saveCart();
     updateCart();
 };
@@ -101,12 +83,12 @@ window.clearCart = function() {
 
 window.toggleCart = function() {
 
-    const cart = document.getElementById("cart");
+    const cartPanel = document.getElementById("cart");
     const overlay = document.getElementById("overlay");
 
-    if (!cart || !overlay) return;
+    if (!cartPanel || !overlay) return;
 
-    cart.classList.toggle("hidden");
+    cartPanel.classList.toggle("hidden");
     overlay.classList.toggle("hidden");
 };
 
@@ -119,7 +101,6 @@ window.closeCart = function() {
     document.getElementById("cart")?.classList.add("hidden");
     document.getElementById("overlay")?.classList.add("hidden");
 };
-
 // =========================
 // UPDATE CART
 // =========================
@@ -134,31 +115,42 @@ function updateCart() {
 
     items.innerHTML = "";
 
-    let totalPrice = 0;
     let totalItems = 0;
+    let totalPrice = 0;
 
     window.cart.forEach((item, index) => {
 
-        const qty = item.qty || 1;
-        const price = item.price || 0;
+        const qty = Number(item.qty) || 1;
+        const price = Number(item.price) || 0;
 
         totalItems += qty;
         totalPrice += qty * price;
 
         items.innerHTML += `
-            <div>
-                <div>
-                    <b>${item.name}</b><br>
+            <div class="cart-item">
+
+                <div class="cart-info">
+                    <strong>${item.name}</strong><br>
                     €${price.toFixed(2)}
                 </div>
 
-                <div>
-                    x${qty}
-                    <span onclick="removeItem(${index})"
-                        style="cursor:pointer;margin-left:10px;color:red;">
+                <div class="cart-actions">
+
+                    <span>x${qty}</span>
+
+                    <span
+                        onclick="removeItem(${index})"
+                        style="
+                            cursor:pointer;
+                            color:#ff4d8d;
+                            margin-left:12px;
+                            font-weight:bold;
+                        ">
                         ✖
                     </span>
+
                 </div>
+
             </div>
         `;
     });
@@ -166,6 +158,7 @@ function updateCart() {
     count.innerText = totalItems;
     total.innerText = "Total: €" + totalPrice.toFixed(2);
 }
+
 // =========================
 // CHECKOUT
 // =========================
@@ -183,56 +176,49 @@ window.loadCheckout = function() {
 
     window.cart.forEach(item => {
 
-        const qty = item.qty || 1;
-        const price = item.price || 0;
+        const qty = Number(item.qty) || 1;
+        const price = Number(item.price) || 0;
 
-        const totalItem = qty * price;
-        sum += totalItem;
+        const lineTotal = qty * price;
+
+        sum += lineTotal;
 
         items.innerHTML += `
-            <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                margin-bottom:12px;
+                padding-bottom:10px;
+                border-bottom:1px solid rgba(255,255,255,.08);
+            ">
+
                 <span>${item.name} × ${qty}</span>
-                <span>€${totalItem.toFixed(2)}</span>
+
+                <span>€${lineTotal.toFixed(2)}</span>
+
             </div>
         `;
     });
 
     total.innerText = "Total: €" + sum.toFixed(2);
-};
 
 // =========================
 // PLACE ORDER
 // =========================
 
-window.placeOrder = function() {
+window.placeOrder = function () {
 
-   const telegramToken = "DEIN_BOT_TOKEN";
-const chatId = "8966176486";
+    if (window.cart.length === 0) {
+        alert("Dein Warenkorb ist leer.");
+        return;
+    }
 
-const total = window.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const orderId = "JUICE-" + Math.floor(10000 + Math.random() * 90000);
+    const date = new Date().toLocaleString("de-DE");
 
-fetch(`https://api.telegram.org/bot${8863543243:AAHbY9ijXyTk5Scb7fObWVwgejNp6P9d7t8}/sendMessage`, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        chat_id: chatId,
-        text:
-`🛒 Neue Bestellung!
+    // HIER kommt später PayPal bzw. Backend/Telegram hin
 
-🆔 Bestellnummer: ${orderId}
-📅 Datum: ${date}
-
-📦 Produkte:
-${window.cart.map(item => `• ${item.name} × ${item.qty} (€${item.price.toFixed(2)})`).join("\n")}
-
-💰 Gesamt: €${total.toFixed(2)}`
-    })
-})
-.then(response => response.json())
-.then(data => console.log("Telegram:", data))
-.catch(error => console.error("Telegram Fehler:", error));
+    // Warenkorb leeren
     window.cart = [];
     saveCart();
     updateCart();
@@ -248,24 +234,46 @@ ${window.cart.map(item => `• ${item.name} × ${item.qty} (€${item.price.toFi
             justify-content:center;
             align-items:center;
             z-index:9999;
-            color:white;
         ">
 
             <div style="
-                background:rgba(255,255,255,0.06);
-                padding:30px;
-                border-radius:16px;
+                background:rgba(255,255,255,.06);
+                padding:35px;
+                border-radius:18px;
+                box-shadow:0 0 30px rgba(255,70,210,.35);
                 text-align:center;
-                box-shadow:0 0 30px rgba(255,70,210,.3);
+                color:white;
+                max-width:420px;
+                width:90%;
             ">
 
                 <h1>✔ Bestellung erfolgreich</h1>
 
-                <p>Bestellnummer: <b>${orderId}</b></p>
-                <p>${date}</p>
+                <p style="margin-top:15px;">
+                    Danke für deine Bestellung bei JuicedOut.
+                </p>
 
-                <button onclick="location.href='index.html'"
-                    style="margin-top:20px;padding:10px 20px;">
+                <p style="margin-top:20px;font-size:14px;opacity:.8;">
+                    Bestellnummer:<br>
+                    <strong>${orderId}</strong>
+                </p>
+
+                <p style="font-size:14px;opacity:.8;">
+                    ${date}
+                </p>
+
+                <button
+                    onclick="location.href='index.html'"
+                    style="
+                        margin-top:25px;
+                        padding:14px 26px;
+                        border:none;
+                        border-radius:12px;
+                        cursor:pointer;
+                        background:linear-gradient(90deg,#ff3ebf,#9d4dff);
+                        color:white;
+                        font-size:16px;
+                    ">
                     Zurück zum Shop
                 </button>
 
@@ -276,156 +284,18 @@ ${window.cart.map(item => `• ${item.name} × ${item.qty} (€${item.price.toFi
 
     document.body.appendChild(overlay);
 };
-
-// =========================
+    // =========================
 // INIT
 // =========================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    updateCart();
+    console.log("DOM READY ✔");
 
-    if (typeof loadCheckout === "function") {
-        loadCheckout();
-    }
-});
-
-console.log("SCRIPT READY ✔");
-window.renderProducts = function(containerId = "products") {
-
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    window.products.forEach(p => {
-
-        container.innerHTML += `
-            <div class="product-card">
-
-                <h3>${p.name}</h3>
-
-                <span>€${p.price.toFixed(2)}</span>
-
-                <button onclick="addToCart('${p.name}', ${p.price})">
-                    In den Warenkorb
-                </button>
-
-            </div>
-        `;
-    });
-};
-window.addToCart = function(name, price) {
-
-    price = Number(price);
-
-    if (isNaN(price)) {
-        console.error("INVALID PRICE:", name, price);
-        return;
-    }
-
-    const existing = window.cart.find(i => i.name === name);
-
-    if (existing) {
-        existing.qty++;
-    } else {
-        window.cart.push({
-            name: name,
-            price: price,
-            qty: 1
-        });
-    }
-
-    saveCart();
-    updateCart();
-};
-window.removeItem = function(index) {
-
-    if (!window.cart[index]) return;
-
-    if (window.cart[index].qty > 1) {
-        window.cart[index].qty--;
-    } else {
-        window.cart.splice(index, 1);
-    }
-
-    saveCart();
-    updateCart();
-};
-window.clearCart = function() {
-
-    window.cart = [];
-
-    saveCart();
-    updateCart();
-};
-window.toggleCart = function() {
-
-    const cart = document.getElementById("cart");
-    const overlay = document.getElementById("overlay");
-
-    if (!cart || !overlay) return;
-
-    cart.classList.toggle("hidden");
-    overlay.classList.toggle("hidden");
-};
-window.closeCart = function() {
-
-    document.getElementById("cart")?.classList.add("hidden");
-    document.getElementById("overlay")?.classList.add("hidden");
-};
-function updateCart() {
-
-    const count = document.getElementById("cart-count");
-    const items = document.getElementById("cart-items");
-    const total = document.getElementById("cart-total");
-
-    if (!count || !items || !total) return;
-
-    items.innerHTML = "";
-
-    let totalPrice = 0;
-    let totalItems = 0;
-
-    window.cart.forEach((item, index) => {
-
-        const qty = item.qty || 1;
-        const price = item.price || 0;
-
-        totalItems += qty;
-        totalPrice += qty * price;
-
-        items.innerHTML += `
-            <div class="cart-item">
-
-                <div>
-                    <strong>${item.name}</strong><br>
-                    €${price.toFixed(2)}
-                </div>
-
-                <div>
-                    x${qty}
-                    <span onclick="removeItem(${index})"
-                        style="cursor:pointer;color:red;margin-left:10px;">
-                        ✖
-                    </span>
-                </div>
-
-            </div>
-        `;
-    });
-
-    count.innerText = totalItems;
-    total.innerText = "Total: €" + totalPrice.toFixed(2);
-}
-document.addEventListener("DOMContentLoaded", () => {
     updateCart();
 
     if (typeof loadCheckout === "function") {
         loadCheckout();
     }
 
-    if (typeof renderProducts === "function") {
-        renderProducts();
-    }
 });
