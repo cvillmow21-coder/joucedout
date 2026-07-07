@@ -96,15 +96,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             },
 
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
+         onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
 
-                    if (typeof placeOrder === "function") {
-                        placeOrder();
-                    }
+        if (typeof placeOrder === "function") {
+            placeOrder();
+        }
 
-                });
-            }
+        console.log("PayPal Zahlung erfolgreich:", details);
+
+    });
+}
 
         }).render('#paypal-button-container');
     }
